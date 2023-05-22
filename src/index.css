@@ -1,3 +1,154 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+   body {
+     @apply font-readex  text-textColor h-full text-sm;
+     background:  linear-gradient(198.65deg, rgba(193, 227, 211, 0.52) 12.62%, rgba(245, 248, 252, 0.45) 41.35%), #FBF3E5;
+     background-repeat: no-repeat;
+     background-size: cover;
+     min-height: 100vh; 
+   }
+ }
+ 
+ @layer components {
+   .container{   
+     @apply max-w-[1260px]
+   }
+   .section-main{
+     @apply  pl-[max(15px,calc((100%-1230px)/2))] xl:px-3
+   }
+   .header__items{
+     @apply flex justify-between items-center max-w-[930px] w-[100%] lg:flex-col  lg:fixed lg:left-0 lg:top-0 lg:w-[100%] lg:h-[100%] z-10 lg:bg-[#000000d3] lg:py-[50px] lg:justify-start z-50
+   }
+   ._ibg img{
+     @apply absolute w-[100%] h-[100%] object-contain object-top 
+   }
+   ._ibg-cover img{
+     @apply object-cover
+   }
+   .parteners.swiper-slide-active{
+     @apply bg-textColor text-[#eaedb6]
+   }
+   .shadow {
+     box-shadow: 0px 165.637px 385.899px rgba(0, 0, 0, 0.06), 0px 82.8655px 145.83px rgba(0, 0, 0, 0.0235788), 0px 49.388px 68.4091px rgba(0, 0, 0, 0.0123733), 0px 25.0842px 27.8318px rgba(0, 0, 0, 0.00550488);
+   }
+   .shadow-bar{
+     box-shadow: 0px 4px 120px rgba(151, 159, 183, 0.15);
+   }
+   .modal__after{
+     @apply  after:w-[2px] after:h-[2px] after:rounded after:bg-gray after:block after:absolute after:right-[-12px]
+   }
+   .after__line{
+     @apply after:w-[2px] after:h-[30px]  after:bg-[#F3F3F3] after:block after:absolute after:right-[0] after:top-[50%] after:translate-y-[-50%]
+   }
+   .before__circle{
+     @apply before:w-[16px] before:h-[16px]  before:border-[6px] before:border-[#47D18C] before:rounded-[50%] before:block before:absolute before:left-[0] before:top-[50%] before:translate-y-[-50%] pl-6
+   }
+   .btn-block {
+     @apply bg-white text-gray border px-6 rounded-[12px] gap-2 flex items-center justify-center max-w-[140px] h-11 hover:text-green ease-in duration-300 whitespace-nowrap
+   }
+   .pagination__list a{
+     @apply  w-11 h-11 flex justify-center items-center rounded-lg bg-white
+   }
+   .pagination__list .selected a{
+     @apply bg-green text-white
+   }
+   .pagination__list .previous a, .pagination__list .next a{
+     @apply bg-transparent text-gray text-lg
+   }
+ }
+ @font-face {
+   font-family: 'icomoon';
+   src:  url('../public/fonts/icomoon.eot?sz63un');
+   src:  url('../public/fonts/icomoon.eot?sz63un#iefix') format('embedded-opentype'),
+     url('../public/fonts/icomoon.ttf?sz63un') format('truetype'),
+     url('../public/fonts/icomoon.woff?sz63un') format('woff'),
+     url('../public/fonts/icomoon.svg?sz63un#icomoon') format('svg');
+   font-weight: normal;
+   font-style: normal;
+   font-display: block;
+ }
+ 
+ [class^="icon-"], [class*=" icon-"] {
+   /* use !important to prevent issues with browser extensions that change fonts */
+   font-family: 'icomoon' !important;
+   speak: never;
+   font-style: normal;
+   font-weight: normal;
+   font-variant: normal;
+   text-transform: none;
+   line-height: 1;
+ 
+   /* Better Font Rendering =========== */
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+ }
+ 
+ .icon-calendar-circle:before {
+   content: "\e902";
+   color: #478f6c;
+ }
+ .icon-airplane:before {
+   content: "\e906";
+   color: #dd9f00;
+ }
+ .icon-notification:before {
+   content: "\e903";
+ }
+ .icon-setting:before {
+   content: "\e904";
+ }
+ .icon-connection:before {
+   content: "\e907";
+   color: #1f8fff;
+ }
+ .icon-more:before {
+   content: "\e908";
+   color: #7f879e;
+ }
+ .icon-search:before {
+   content: "\e90a";
+ }
+ .icon-logout:before {
+   content: "\e909";
+ }
+ .icon-calendar:before {
+   content: "\e90b";
+ }
+ .icon-mess:before {
+   content: "\e90c";
+ }
+ .icon-job:before {
+   content: "\e901";
+ }
+ .icon-dashboard:before {
+   content: "\e900";
+ }
+ .icon-pencil:before {
+   content: "\e90d";
+ }
+ .icon-bin2:before {
+   content: "\e9ad";
+ }
+ .icon-heart:before {
+   content: "\e9da";
+ }
+ .icon-question:before {
+   content: "\ea09";
+ }
+ .icon-arrow-left2:before {
+   content: "\ea40";
+ }
+ .icon-facebook:before {
+   content: "\ea90";
+ }
+ .icon-instagram:before {
+   content: "\ea92";
+ }
+ .icon-dribbble:before {
+   content: "\eaa7";
+ }
+ 
