@@ -2,7 +2,7 @@ import {createBrowserRouter} from "react-router-dom"
 import { MainLayout } from "./layouts/MainLayout"
 import { JobLayout } from "./layouts/JobLayout"
 import { Dashboard } from "./pages/Dashboard"
-import { Job } from "./pages/Job/Job"
+
 import { Recommended } from "./pages/Job/Recommended"
 import { MyApplication } from "./pages/Job/MyApplication"
 import { Saved } from "./pages/Job/Saved"

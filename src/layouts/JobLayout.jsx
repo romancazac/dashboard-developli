@@ -6,15 +6,19 @@ import { Header } from '../components/Header/Header'
 
 export const JobLayout = () => {
    return (
-      <div className='flex'>
+      <>
 
          <Aside />
-         <div className='flex-auto ml-[260px] px-6'>
-            <Header/>
-            <Outlet />
+         <div className='ml-[260px] px-6'>
+            <Header />
+            <div className="flex gap-10">
+               <div className="flex-auto">
+                  <Outlet />
+               </div>
+               <Filters/>
+            </div>
          </div>
-         <Filters />
 
-      </div>
+      </>
    )
 }

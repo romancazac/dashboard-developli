@@ -48,8 +48,14 @@
      @apply before:w-[16px] before:h-[16px]  before:border-[6px] before:border-[#47D18C] before:rounded-[50%] before:block before:absolute before:left-[0] before:top-[50%] before:translate-y-[-50%] pl-6
    }
    .btn-block {
-     @apply bg-white text-gray border px-6 rounded-[12px] gap-2 flex items-center justify-center max-w-[140px] h-11 hover:text-green ease-in duration-300 whitespace-nowrap
+     @apply inline-flex justify-start items-center px-8 h-10 rounded-xl font-semibold  text-white  ease-in-out duration-300 hover:bg-green
    }
+   .btn-block_gray {
+    @apply  bg-[#3D425A] 
+    }
+    .btn-block_green {
+      @apply  bg-[#47D18C] hover:bg-[#3D425A] 
+      }
    .pagination__list a{
      @apply  w-11 h-11 flex justify-center items-center rounded-lg bg-white
    }

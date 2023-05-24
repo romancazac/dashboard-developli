@@ -16,7 +16,7 @@ export const Aside = () => {
 
 
   return (
-    <Card className="fixed top-0 left-0 h-full w-full max-w-[260px]  p-4  rounded-none shadow-none  ">
+    <Card className="fixed top-0 left-0 h-full w-full max-w-[260px] overflow-y-auto overflow-x-hidden  p-4  rounded-none shadow-none  ">
       <a href="/" className="mb-10 p-4">
         <img src={logo} alt="" />
       </a>
