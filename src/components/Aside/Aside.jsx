@@ -50,17 +50,14 @@ export const Aside = () => {
 
           <AccordionBody className="flex flex-col gap-3 items-start pl-[49px]">
 
-            <NavLink to='recommended' className='font-medium [&.active]:text-blueColor'>
-              Recommended
+            <NavLink to='search-job' className='font-medium [&.active]:text-blueColor'>
+              Search Job
             </NavLink>
             <NavLink to='my-application' className='font-medium [&.active]:text-blueColor'>
               My Application
             </NavLink>
             <NavLink to='Saved' className='font-medium [&.active]:text-blueColor'>
-              Saved
-            </NavLink>
-            <NavLink to='preferenced' className='font-medium [&.active]:text-blueColor'>
-              Preferences
+              Job Saved
             </NavLink>
           </AccordionBody>
         </Accordion>

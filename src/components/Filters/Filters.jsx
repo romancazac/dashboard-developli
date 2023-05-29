@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import Spollers from '../Spollers/Spollers'
 
 export const Filters = () => {
@@ -166,11 +166,11 @@ export const Filters = () => {
 
 
  ]
-//  const [open, setOpen] = useState(1);
+ const [open, setOpen] = useState(1);
 
-//  const handleOpenSpoller = (value) => {
-//     setOpen(open === value ? 0 : value);
-//  };
+ const handleOpenSpoller = (value) => {
+    setOpen(open === value ? 0 : value);
+ };
 //  const onReset = () => {
 //     dispatch(setReset());
 //     setMount(!mount)
@@ -178,28 +178,28 @@ export const Filters = () => {
 
 
 
- const renderTopMob = () => {
-    return (
-       <>
-          {
-             openFilter &&
-             <div className="flex justify-between items-center mb-8 mt-10">
-                <button className="text-[#1B2124] font-bold">Filters</button>
-                <button onClick={onReset} className="text-[#EE5566]">Clear</button>
-             </div>
-          }
-       </>
+//  const renderTopMob = () => {
+//     return (
+//        <>
+//           {
+//              openFilter &&
+//              <div className="flex justify-between items-center mb-8 mt-10">
+//                 <button className="text-[#1B2124] font-bold">Filters</button>
+//                 <button onClick={onReset} className="text-[#EE5566]">Clear</button>
+//              </div>
+//           }
+//        </>
 
-    )
- }
+//     )
+//  }
  const resizeW = () => {
 
-    if (window.innerWidth < 767) {
-       dispatch(setIsMob(true));
+   //  if (window.innerWidth < 767) {
+   //     dispatch(setIsMob(true));
 
-    } else {
-       dispatch(setIsMob(false));
-    }
+   //  } else {
+   //     dispatch(setIsMob(false));
+   //  }
 
  };
 //  useEffect(() => {     
@@ -224,11 +224,11 @@ export const Filters = () => {
     
 
        < >
-          <div className={`bg-white rounded-[12px] px-[20px] py-[25px] md:h-full md:flex md:flex-col`}>
-             {renderTopMob()}
+          <div className={`max-w-[316px] h-full w-full bg-white rounded-xl px-[20px] py-[25px] md:h-full md:flex md:flex-col`}>
+             {/* {renderTopMob()} */}
              {
                 asideData.map((item) =>
-                   <Spollers key={item.id} item={item} handleOpen={handleOpenSpoller} open={open} mount={mount } />
+                   <Spollers key={item.id} item={item} handleOpen={handleOpenSpoller } open={open}/>
                 )
              }
             

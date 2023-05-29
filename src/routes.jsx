@@ -2,11 +2,11 @@ import {createBrowserRouter} from "react-router-dom"
 import { MainLayout } from "./layouts/MainLayout"
 import { JobLayout } from "./layouts/JobLayout"
 import { Dashboard } from "./pages/Dashboard"
-
-import { Recommended } from "./pages/Job/Recommended"
 import { MyApplication } from "./pages/Job/MyApplication"
 import { Saved } from "./pages/Job/Saved"
-import { Preferenced } from "./pages/Job/Preferenced"
+import { SearchJob } from "./pages/Job/SearchJob"
+import { Messages } from "./pages/Messages"
+import { FullPageLayout } from "./layouts/FullPageLayout"
 
 export const routes = createBrowserRouter([
    {
@@ -25,8 +25,8 @@ export const routes = createBrowserRouter([
       children:[
     
          {
-            path:"recommended",
-            element:<Recommended/>
+            path:"search-job",
+            element:<SearchJob/>
          },
          {
             path:"my-application",
@@ -35,11 +35,18 @@ export const routes = createBrowserRouter([
          {
             path:"saved",
             element:<Saved/>
-         },
-         {
-            path:"preferenced",
-            element:<Preferenced/>
          }
+      ]
+   },
+   {
+      path:"/",
+      element:<FullPageLayout/>,
+      children:[
+         {
+            path:"messages",
+            element:<Messages/>
+         }
+       
       ]
    },
 

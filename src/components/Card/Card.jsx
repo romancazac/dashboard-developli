@@ -1,9 +1,9 @@
 import React from 'react';
 import avatar from '../../assets/img/avatar.png'
 import ButtonIcon from '../ui/ButtonIcon';
-const Card = () => {
+const Card = ({className}) => {
     return (
-        <div className='flex-[0_1_calc(50%-10px)] bg-white rounded-xl p-5'>
+        <div className={`flex-[0_1_calc(50%-10px)] bg-white rounded-xl p-5 ${className}`}>
             <div className="flex justify-between items-center mb-3">
                 <span className='w-[55px] h-[55px] bg-[#F5F7FF] flex justify-center items-center overflow-hidden rounded-full'>
                     <img src={avatar} alt="" />

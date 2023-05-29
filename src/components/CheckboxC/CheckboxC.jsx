@@ -1,15 +1,15 @@
 import { Checkbox, Typography } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setFilters } from "../../redux/slices/filterSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setFilters } from "../../redux/slices/filterSlice";
 
 
 
 
 export const CheckboxC = ({ title, label }) => {
 
-   const dispatch = useDispatch();
-   const { experience, category, employment, salary, location } = useSelector(state => state.filter)
+   // const dispatch = useDispatch();
+   // const { experience, category, employment, salary, location } = useSelector(state => state.filter)
    const [items, seItems] = useState([])
    
 //    const handleCheckboxChange = (e, title) => {
@@ -29,7 +29,7 @@ export const CheckboxC = ({ title, label }) => {
          title={label}
          name={title}
          onChange={e => handleCheckboxChange(e, title)}
-         checked={items.some((i) =>  i === title ? true : false)}
+         // checked={items.some((i) =>  i === title ? true : false)}
          label={
             (
                <Typography
