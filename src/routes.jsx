@@ -7,6 +7,9 @@ import { Saved } from "./pages/Job/Saved"
 import { SearchJob } from "./pages/Job/SearchJob"
 import { Messages } from "./pages/Messages"
 import { FullPageLayout } from "./layouts/FullPageLayout"
+import { Resume } from "./pages/Profile/Resume"
+import { Settings } from "./pages/Profile/Settings"
+import { ProfileLayout } from "./layouts/ProfileLayout"
 
 export const routes = createBrowserRouter([
    {
@@ -17,6 +20,7 @@ export const routes = createBrowserRouter([
             path:"dashboard",
             element:<Dashboard/>
          }
+         
       ]
    },
    {
@@ -49,6 +53,21 @@ export const routes = createBrowserRouter([
        
       ]
    },
+   {
+
+      path:"/",
+      element:<ProfileLayout/>,
+      children:[
+         {
+            path:"resume",
+            element:<Resume/>
+         },
+         {
+            path:"settings",
+            element:<Settings/>
+         }
+      ]
+   }
 
 
 

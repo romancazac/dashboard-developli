@@ -105,10 +105,10 @@ export const Aside = () => {
 
           <AccordionBody className="flex flex-col gap-3 items-start pl-[49px]">
 
-            <NavLink to='my-resume' className='font-medium [&.active]:text-blueColor'>
+            <NavLink to='resume' className='font-medium [&.active]:text-blueColor'>
               My resume
             </NavLink>
-            <NavLink to='Settings' className='font-medium [&.active]:text-blueColor'>
+            <NavLink to='settings' className='font-medium [&.active]:text-blueColor'>
               Settings
             </NavLink>
 
