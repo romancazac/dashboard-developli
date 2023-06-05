@@ -92,7 +92,7 @@ export const Resume = () => {
         />
 
       </ProfileSection>
-      <ProfileSection title='Languages'>
+      <ProfileSection title='Languages' addItem={true}>
 
 
       </ProfileSection>

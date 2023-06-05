@@ -1,8 +1,8 @@
 import React from 'react';
-import avatar from '../../assets/img/avatar.png'
+
 import ButtonIcon from '../ui/ButtonIcon';
-import { CurrencyDollarIcon, DocumentTextIcon, MapIcon, MapPinIcon, PresentationChartBarIcon } from '@heroicons/react/20/solid';
-const CardJob = () => {
+import { CurrencyDollarIcon, DocumentTextIcon,  MapPinIcon, PresentationChartBarIcon } from '@heroicons/react/20/solid';
+const CardJob = ({openPop, avatar, name, text, country, salaray, id }) => {
     return (
         <div className='flex-[0_1_100%] bg-white rounded-xl p-5 mb-5'>
             <div className="flex justify-between items-center mb-3">
@@ -24,23 +24,23 @@ const CardJob = () => {
                 </div>
             </div>
 
-            <h3 className="text-blackColor font-semibold mb-5">UI / UX Designer</h3>
+            <h3 className="text-blackColor font-semibold mb-5">{name}</h3>
             <div className="flex mb-4 gap-5">
                 <span className='text-xs text-[#1F8FFF]  font-bold'>Shopify</span>
                 <span className='flex items-center gap-2 text-xs text-gray font-bold'>
                     <MapPinIcon className='w-4' />
-                    United Arab Emirates
+                    {country}
                 </span>
                 <span className='flex items-center gap-2 text-xs text-gray font-bold'>
                     <CurrencyDollarIcon className='w-4' />
-                    $25,000/Month
+                    ${salaray}/Month
                 </span>
                 <span className='flex items-center gap-2 text-xs text-gray font-bold'>
                     <PresentationChartBarIcon className='w-4' />
                     Test required
                 </span>
             </div>
-            <p className="mb-5">We are looking for a dynamic UI/UX Designer & leader to join our team. We are building guest-experience & online check-in for hotels...</p>
+            <p className="mb-5">{text}</p>
             <div className="flex flex-wrap gap-2 mb-5">
                 <span className="text-gray px-3 py-2 bg-[#F9F9F9] rounded-xl text-xs">Fulltime</span>
                 <span className="text-gray px-3 py-2 bg-[#F9F9F9] rounded-xl text-xs">Code</span>
@@ -54,7 +54,7 @@ const CardJob = () => {
                     <DocumentTextIcon className='w-4'/>
                     Take a test
                 </button>
-                <button className='btn-block btn-block_gray'>Detail Information</button>
+                <button className='btn-block btn-block_gray' onClick={() => openPop(id)}>Detail Information</button>
             </div>
 
         </div>
