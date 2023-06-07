@@ -7,8 +7,8 @@ import { isEquivalent } from "../../utils/isEquivalent";
 export const fetchJobs = createAsyncThunk(
    'jobs/fetchJobsStatus',
    async (params) => {
-      const { totalCount, filtersParams } = params
-      const response = await axios.get(`${BASE_URL}/jobs?_start=0&_end=${totalCount}${filtersParams.join('')}`)
+      const { totalCount, filtersParams, sort,searchQ } = params
+      const response = await axios.get(`${BASE_URL}/jobs?_start=0&_end=${totalCount}${filtersParams.join('')}&_sort=${sort}${searchQ}`)
       const totalItems = response.headers['x-total-count'];
 
       // return response.data
@@ -20,22 +20,16 @@ export const fetchJobs = createAsyncThunk(
    }
 )
 
-export const fetchJob = createAsyncThunk(
-   'jobs/fetchJobStatus',
-   async (id) => {
-      const response = await axios.get(`${BASE_URL}/jobs/${id}`)
-      return response.data
-   }
-)
 
 const initialState = {
    jobsData: [],
    totalCount: 5,
    totalItems: '',
-   // paginationPage:1,
    status: "loading",
    jobSearch: {},
-   filter: []
+   filter: [],
+   sort:'',
+   popUp:''
 
 }
 
@@ -54,8 +48,10 @@ export const jobsSlice = createSlice({
          state.jobSearch = ''
       },
       setJobs(state, action) {
-         console.log(action.payload)
          state.jobsData = action.payload
+      },
+      setSort(state, action) {
+         state.sort = action.payload
       },
       setFilters(state, action) {
          
@@ -67,6 +63,9 @@ export const jobsSlice = createSlice({
          } else {
             state.filter = [...state.filter, action.payload];
          }
+      },
+      setPopUp(state, action){
+         state.popUp = action.payload
       }
 
    },
@@ -92,7 +91,7 @@ export const jobsSlice = createSlice({
    }
 })
 
-export const { setTotalCount, setSearchJob, setSearchRes, setJobs, setFilters } = jobsSlice.actions;
+export const { setTotalCount, setSearchJob, setSearchRes, setJobs, setFilters, setSort,setPopUp } = jobsSlice.actions;
 
 export const selectJobs = (state) => state.jobs.jobsData
 

@@ -17,7 +17,7 @@ export default function Select({onDispatch, data, className=null}) {
     
    useEffect(() => {
      
-      // onDispatch(selected)
+      onDispatch(selected)
 
    },[selected])
  
@@ -53,7 +53,7 @@ export default function Select({onDispatch, data, className=null}) {
                               className={({ active }) =>
                                  classNames(
                                     active ? 'bg-green text-white' : 'text-gray-900',
-                                    'relative cursor-default select-none py-2 pl-3 pr-9'
+                                    'relative cursor-default select-none py-2  pr-2'
                                  )
                               }
                               value={item}
@@ -75,7 +75,7 @@ export default function Select({onDispatch, data, className=null}) {
                                              'absolute inset-y-0 right-0 flex items-center pr-4'
                                           )}
                                        >
-                                          <CheckIcon className="h-5 w-5 text-green" aria-hidden="true" />
+                                          <CheckIcon className="h-3 w-3 text-blackColor" aria-hidden="true" />
 
                                        </span>
                                     ) : null}

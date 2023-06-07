@@ -65,6 +65,7 @@
    .pagination__list .previous a, .pagination__list .next a{
      @apply bg-transparent text-gray text-lg
    }
+  
  }
  @font-face {
    font-family: 'icomoon';

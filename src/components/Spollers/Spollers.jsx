@@ -50,6 +50,7 @@ export default function Spollers({ item, handleOpen, open, mount }) {
 
             )
           }
+          
         </AccordionBody>
 
       </Accordion>

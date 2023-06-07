@@ -13,7 +13,7 @@ import ButtonIcon from "../ui/ButtonIcon";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { ApplyForm } from "../ApplyForm/ApplyForm";
 
-export default function DetailsPopUp({ open, handleOpen,date, name, author, avatar, country, experience, level, requirements, salary, text, types }) {
+export default function TestPopUp({ open, handleOpen,date, name, author, avatar, country, experience, level, requirements, salary, text, types }) {
    const [apply, setApply] = useState(false);
 
    return (

@@ -6,36 +6,41 @@ import { TopCandidats } from '../../components/TopCandidats/TopCandidats'
 import { SearchBar } from '../../components/SearchBar/SearchBar'
 import DetailsPopUp from '../../components/DetailsPopUp/DetailsPopUp'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchJob, fetchJobs, setTotalCount } from '../../redux/slices/jobsSlice'
+import {  fetchJobs, setPopUp, setTotalCount } from '../../redux/slices/jobsSlice'
+import { Spinner } from '@material-tailwind/react'
+import TestPopUp from '../../components/TestPopUp/TestPopUp'
 
 
 export const SearchJob = () => {
-  const [open, setOpen] = useState(false);
   const [job, setJob] = useState({})
+
   const dispatch = useDispatch()
-  const { jobsData, totalCount, totalItems, status,filter } = useSelector(state => state.jobs)
+  const { jobsData, totalCount, totalItems, status, filter, sort, jobSearch, popUp } = useSelector(state => state.jobs)
 
-
+// open pop detail info for jobs
   const handleOpen = (id) => {
-    setOpen(!open)
-    dispatch(fetchJob(id)).then((data) => setJob(data.payload))
+    const job = jobsData.filter((obj) => obj.id === id);
+    setJob(job[0])
   };
 
+// load more
   const loadMoreJobs = () => {
     dispatch(setTotalCount())
-
   }
-
+// filters params
   const filtersParams = filter?.map((item) => {
     const entries = Object.entries(item)
-    const q = entries.map((i) => i.join('='))
-    return  `&${q}`
-  }) 
+    const params = entries.map((i) => i.join('='))
+    return `&${params}`
+  })
+// search params
+  const searchQ = jobSearch.name ? `&country=${jobSearch.country}&q=${jobSearch.name} ` : ''
+
+
 
   useEffect(() => {
-    dispatch(fetchJobs({totalCount, filtersParams}))
-
-  }, [totalCount,filter])
+    dispatch(fetchJobs({ totalCount, filtersParams, sort, searchQ }))
+  }, [totalCount, filter, sort, jobSearch])
 
 
   return (
@@ -44,11 +49,17 @@ export const SearchJob = () => {
       <SearchBar />
       <TopCandidats />
 
-      {jobsData.map((item) => <CardJob {...item} openPop={handleOpen} />)}
+   
+      {jobsData.length === 0 ? (
+        status === "loading" ? <Spinner className='mx-auto'/> : 'No Available jobs'
+      ) : (
+        jobsData.map((item) => <CardJob {...item} openPop={handleOpen} />)
+      )}
 
       {totalItems == jobsData.length || <BtnLoader onClick={loadMoreJobs} loading={status}>Load More</BtnLoader>}
 
-      <DetailsPopUp open={open} handleOpen={handleOpen} {...job}/>
+      <DetailsPopUp open={popUp === 'information'} handleOpen={() => dispatch(setPopUp('')) } {...job} className='overflow-auto' />
+      <TestPopUp open={popUp === 'test'} handleOpen={() => dispatch(setPopUp(''))}/>
     </>
   )
 }

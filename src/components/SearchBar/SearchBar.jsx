@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from '../ui/Select'
 import { MapPinIcon } from '@heroicons/react/20/solid';
 // import { setOpenFilter } from "../../redux/slices/filterSlice";
-// import { setSearchJob, setSearchRes } from '../../redux/slices/jobsSlice';
+import { setSearchJob, setSearchRes } from '../../redux/slices/jobsSlice';
 export const SearchBar = () => {
-   // const dispatch = useDispatch()
+   const dispatch = useDispatch()
    // const { isMob } = useSelector(state => state.filter);
    const [search, setSearch] = useState({ name: '', country: '' })
 
@@ -34,11 +34,11 @@ const isMob = false;
       setSearch({ ...search, country: value.name });
    }
    const onSearch = () => {
-      // dispatch(setSearchJob(search))
+      dispatch(setSearchJob(search))
    }
 
    const onSearcRes = () => {
-      // dispatch(setSearchRes())
+      dispatch(setSearchRes())
       setSearch({ name: '', country: '' });
    }
 
