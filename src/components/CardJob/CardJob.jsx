@@ -1,9 +1,9 @@
 import React from 'react';
-import { setPopUp} from '../../redux/slices/jobsSlice'
+import { setPopUp } from '../../redux/slices/jobsSlice'
 import ButtonIcon from '../ui/ButtonIcon';
-import { CurrencyDollarIcon, DocumentTextIcon,  MapPinIcon, PresentationChartBarIcon } from '@heroicons/react/20/solid';
+import { CurrencyDollarIcon, DocumentTextIcon, MapPinIcon, PresentationChartBarIcon } from '@heroicons/react/20/solid';
 import { useDispatch } from 'react-redux';
-const CardJob = ({openPop, avatar, name, text, country, salaray, id }) => {
+const CardJob = ({ openPop, avatar, name, text, country, salaray, id }) => {
     const dispatch = useDispatch()
     return (
         <div className='flex-[0_1_100%] bg-white rounded-xl p-5 mb-5'>
@@ -22,7 +22,7 @@ const CardJob = ({openPop, avatar, name, text, country, salaray, id }) => {
                         className="w-[36px] h-[36px]"
 
                     />
-    
+
                 </div>
             </div>
 
@@ -52,11 +52,11 @@ const CardJob = ({openPop, avatar, name, text, country, salaray, id }) => {
             </div>
             <div className="flex gap-3">
 
-                <button onClick={() => dispatch(setPopUp('test'))} className='btn-block btn-block_green flex items-center gap-1'>
-                    <DocumentTextIcon className='w-4'/>
+                <button onClick={() => openPop(id, dispatch(setPopUp('test')))} className='btn-block btn-block_green flex items-center gap-1'>
+                    <DocumentTextIcon className='w-4' />
                     Take a test
                 </button>
-                <button className='btn-block btn-block_gray' onClick={() => openPop(id,dispatch(setPopUp('information')))}>Detail Information</button>
+                <button className='btn-block btn-block_gray' onClick={() => openPop(id, dispatch(setPopUp('information')))}>Detail Information</button>
             </div>
 
         </div>

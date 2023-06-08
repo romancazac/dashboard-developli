@@ -22,7 +22,7 @@ export const ProfileTop = () => {
          <div className="flex items-center gap-3">
             <div className="flex items-center gap-3">
                <span className='text-gray'>Status</span>
-               <Select data={dataVisible}  className={'bg-white w-[144px] rounded-xl h-[40px] font-bold text-blackColor'}/>
+               <Select data={dataVisible} onDispatch={() => console.log('dispatch')} className={'bg-white w-[144px] rounded-xl h-[40px] font-bold text-blackColor'}/>
             </div>
             <button className="btn-block btn-block_gray gap-2">
                <EyeIcon className='w-4' />

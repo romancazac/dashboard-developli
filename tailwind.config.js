@@ -27,7 +27,7 @@ module.exports = withMT({
       colors: {
         green: '#47D18C',
         gray: '#7F879E',
-        blackColor: '#252A3F',
+        blackColor: '#2D2D2D',
         blueColor: '#1F8FFF',
         bgColor: '#E3E3E3',
         textColor: '#3D425A',
@@ -39,6 +39,7 @@ module.exports = withMT({
       backgroundImage: {
         'platform': 'url("/src/assets/img/bgPlatform.png")',
         'bgBanner': 'url("/src/assets/img/bg-baner.png")',
+        'bgAuth': 'url("/src/assets/img/bg-auth.png")',
         'linearGradient': 'linear-gradient(180deg, rgba(37, 42, 63, 0) 0%, #252A3F 115.33%)',
 
        

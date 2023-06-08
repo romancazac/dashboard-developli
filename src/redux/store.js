@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import jobs from './slices/jobsSlice'
+import auth from './slices/authSlice'
 export default configureStore({
   reducer: {
-   jobs
+   jobs,
+   auth
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

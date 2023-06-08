@@ -65,7 +65,11 @@
    .pagination__list .previous a, .pagination__list .next a{
      @apply bg-transparent text-gray text-lg
    }
-  
+   .slider-auth .absolute {
+    left: 10% !important;
+   
+   }
+
  }
  @font-face {
    font-family: 'icomoon';

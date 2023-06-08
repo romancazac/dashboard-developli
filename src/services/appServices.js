@@ -12,6 +12,9 @@ export const useAppServices = () => {
 
 
     }
+    const getQuestions = () => {
+        return request(`${BASE_URL}/testQuestion`)
+    }
 
-    return { error, loading, succes, getAllJobs }
+    return { error, loading, succes, getAllJobs, getQuestions }
 }

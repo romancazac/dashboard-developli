@@ -10,8 +10,25 @@ import { FullPageLayout } from "./layouts/FullPageLayout"
 import { Resume } from "./pages/Profile/Resume"
 import { Settings } from "./pages/Profile/Settings"
 import { ProfileLayout } from "./layouts/ProfileLayout"
+import { Auth } from "./pages/Auth/Auth"
+import { Registration } from "./pages/Auth/Registration"
+import { LogIn } from "./pages/Auth/LogIn"
 
 export const routes = createBrowserRouter([
+   {
+      path:"/",
+      element:<Auth/>,
+      children:[
+         {
+            path:"auth",
+            element:<LogIn/>
+         },
+         {
+            path:"registration",
+            element:<Registration/>
+         }
+      ]
+   },
    {
       path:"/",
       element:<MainLayout/>,
