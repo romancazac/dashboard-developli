@@ -39,7 +39,7 @@ module.exports = withMT({
       backgroundImage: {
         'platform': 'url("/src/assets/img/bgPlatform.png")',
         'bgBanner': 'url("/src/assets/img/bg-baner.png")',
-        'bgAuth': 'url("/src/assets/img/bg-auth.png")',
+        'bgAuth': 'url("/src/assets/img/dash.png")',
         'linearGradient': 'linear-gradient(180deg, rgba(37, 42, 63, 0) 0%, #252A3F 115.33%)',
 
        

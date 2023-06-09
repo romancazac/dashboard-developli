@@ -1,5 +1,6 @@
 import React from 'react'
 import avatar from '../../assets/img/avatar.png'
+import { Link } from 'react-router-dom'
 export const Header = () => {
   return (
     <header className='flex justify-between items-center pt-6 mb-14'>
@@ -16,13 +17,13 @@ export const Header = () => {
           <span className='absolute top-0 right-[-50%] translate-x-[-50%] bg-[#FE6E66] text-xs text-white font-medium px-1 py-[2px] rounded-xl'>218</span>
         </li>
         <li className='relative flex justify-center items-center w-12 h-12 rounded-full bg-white  duration-300 ease-in-out hover:bg-green hover:text-white'>
-          <button className='icon-setting text-2xl'></button>
+          <Link to='/resume' className='icon-setting text-2xl'></Link>
      
         </li>
         <li className='relative flex justify-center items-center w-12 h-12 rounded-full bg-white  duration-300 ease-in-out hover:bg-green hover:text-white'>
-          <button className='w-10 w-10 overflow-hidden rounded-full'>
+          <Link to='/dashboard' className='w-10 w-10 overflow-hidden rounded-full'>
             <img src={avatar} alt="avatar" className='w-full h-full object-cover' />
-          </button>
+          </Link>
      
         </li>
    
