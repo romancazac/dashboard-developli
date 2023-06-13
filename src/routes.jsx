@@ -20,7 +20,7 @@ export const routes = createBrowserRouter([
       element:<Auth/>,
       children:[
          {
-            path:"auth",
+            path:"/",
             element:<LogIn/>
          },
          {

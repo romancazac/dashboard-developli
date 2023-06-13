@@ -2,15 +2,17 @@ import React from 'react'
 import ButtonIcon from '../ui/ButtonIcon'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { useDispatch } from 'react-redux'
-import { setProfileInfo} from '../../redux/slices/profileSlice'
-import {  fetchAddItem } from '../../redux/slices/profileSlice'
 
-export const ProfileSection = ({ title, children, NoRedact,addItem, editArray }) => {
+import { setPopUp } from '../../redux/slices/jobsSlice'
+import { setForUdateData } from '../../redux/slices/profileSlice'
+
+export const ProfileSection = ({ title, children, NoRedact,addItem, editArray,data, id }) => {
    const dispatch = useDispatch()
    const onEdit = () => {
-      // console.log(editArray)
-      // console.log(dispatch(setProfileInfo(editArray)))
-      dispatch(fetchAddItem('param'))
+
+      dispatch(setPopUp(editArray))
+      dispatch(setForUdateData([id,data]))
+
    }
    return (
       <div className="mb-[23px] p-6 rounded-xl bg-white">

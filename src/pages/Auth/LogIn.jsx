@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { fetchSingIn, setOpenPop, setRegistration, logout } from '../../redux/slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 export const LogIn= () => {
    const dispatch = useDispatch();
    const history = useNavigate()
@@ -65,7 +65,7 @@ export const LogIn= () => {
             <div className="flex justify-between gap-4">
                <button type='submit' className='bg-green text-white px-6 py-3 font-semibold flex items-center gap-2 rounded-2xl hover:scale-105 ease-in-out duration-75 text-base'>Login</button>
                <p className="text-xs font-medium mt-3">Not registered yet? &nbsp;
-                  <button onClick={() => dispatch(setRegistration(true))} className="text-green">Create an account</button></p>
+                  <Link to='registration' className="text-green">Create an account</Link></p>
             </div>
          </Form>
       )

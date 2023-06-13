@@ -8,7 +8,7 @@ export const ProfileItem = ({ label, text }) => {
          <div className="" >
             {
                text?.map((t) =>
-                  <a href={t.url} className="flex gap-2 items-center mb-4 group">
+                  <a href={t.url} target="_blank" className="flex gap-2 items-center mb-4 group">
                      <span className={`${t.icon} text-green w-3`}></span>
                      <p className='text-gray group-hover:text-green group-hover:underline '>{t.name}</p>
                   </a>
