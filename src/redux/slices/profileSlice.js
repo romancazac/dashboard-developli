@@ -38,6 +38,93 @@ export const fetchAddItem = createAsyncThunk(
      }
    }
  );
+ export const fetchPostItem = createAsyncThunk(
+   'profile/addItemStatus',
+   async (params, { getState }) => {
+      const {updates, section, id} = params;
+     
+     try {
+
+       const { profileData } = getState().profile;
+   
+       const updatedPersonalInfo = [...profileData[id]?.[section], updates];
+ 
+       await axios.put(`${BASE_URL}/profile-info/${id}`, {
+         [section]: updatedPersonalInfo
+       });
+ 
+       return updatedPersonalInfo;
+     } catch (error) {
+       console.error('Eroare la efectuarea cererii put:', error);
+       throw error;
+     }
+   }
+ );
+ export const fetchUpdateItem = createAsyncThunk(
+  'profile/updateItemStatus',
+  async (params, { getState }) => {
+    const { updates, section, id, objId } = params;
+
+    try {
+      const { profileData } = getState().profile;
+      
+      const updatedSection = profileData[id][section].map(item => {
+        if (item.id === objId) {
+          return {
+            ...item,
+            ...updates
+          };
+        }
+        return item;
+      });
+
+      const updatedProfileData = {
+        ...profileData,
+        [id]: {
+          ...profileData[id],
+          [section]: updatedSection
+        }
+      };
+
+      await axios.patch(`${BASE_URL}/profile-info/${id}`, {
+        ...updatedProfileData[id]
+      });
+
+      return updatedSection;
+    } catch (error) {
+      console.error('Eroare la efectuarea cererii PATCH:', error);
+      throw error;
+    }
+  }
+);
+ export const fetchDeleteItem = createAsyncThunk(
+  'profile/deleteItemStatus',
+  async (params, { getState }) => {
+    const { section, id, itemId } = params;
+
+    try {
+      const { profileData } = getState().profile;
+
+      const updatedSection = profileData[id]?.[section].filter(
+        (item) => item.id !== itemId
+      );
+
+      // const updatedProfileInfo = profileData.map((item) =>
+      //   item.id === id ? { ...item, [section]: updatedSection } : item
+      // );
+
+      await axios.put(`${BASE_URL}/profile-info/${id}`, {
+        ...profileData[id],
+        [section]: updatedSection
+      });
+
+      return updatedSection;
+    } catch (error) {
+      console.error('Eroare la efectuarea cererii put:', error);
+      throw error;
+    }
+  }
+);
 const initialState = {
    profileData: {},
    forUpdateData: [],

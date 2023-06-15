@@ -30,12 +30,11 @@ export default function UpdatePopup({ open, handleOpen }) {
       await disptach(fetchAddItem({ updates, section: popUp, id: forUpdateData[0] }))
       disptach(fetchProfileInfo())
    }
-   console.log(updates)
 
    const renderArr = (arr, label) => {
       return (
-        <div>
-          {arr.map((t, i) => (
+        <div className="w-full">
+          {arr?.map((t, i) => (
             <div className="flex gap-2 items-center mb-4 group" key={i}>
               <span className={`${t.icon} text-green w-3`}></span>
               <p className="text-gray group-hover:text-green group-hover:underline">
