@@ -7,7 +7,7 @@ import { File } from '../../components/ui/File'
 import { AcademicCapIcon } from '@heroicons/react/20/solid'
 import { ProfileItemIcon } from '../../components/ProfileItemIcon/ProfileItemIcon'
 import { useDispatch, useSelector } from 'react-redux'
-import UpdatePopup from '../../components/updatePopup/updatePopup'
+import UpdatePopup from '../../components/UpdatePopup/UpdatePopup'
 import { setPopUp } from '../../redux/slices/jobsSlice'
 import UpdatePopupAdd from '../../components/UpdatePopupAdd/UpdatePopupAdd'
 
