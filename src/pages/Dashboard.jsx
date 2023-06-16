@@ -1,7 +1,9 @@
 
+
 import Banner from '../components/Banner/Banner'
 import Card from '../components/Card/Card'
 import { CardStatistic } from '../components/CardStatistic/CardStatistic'
+
 
 export const Dashboard = () => {
   const statisticData = [
@@ -27,9 +29,11 @@ export const Dashboard = () => {
 
   ]
 
+ 
   
   return (
     <>
+    
       <div className="flex mx-[-10px] mb-11 ">
         {statisticData.map((card) => <CardStatistic {...card} key={card.number} />)}
       </div>
@@ -45,7 +49,8 @@ export const Dashboard = () => {
           <Card/>
           <Card/>
         </div>
-      </section>  
+      </section> 
+    
     </>
   )
 }

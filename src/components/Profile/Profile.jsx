@@ -1,16 +1,24 @@
 
+import { useDispatch } from 'react-redux'
 import avatar from '../../assets/img/avatar.png'
 import ButtonIcon from '../ui/ButtonIcon'
+import { setPopUp } from '../../redux/slices/jobsSlice'
+import { ProfileSections } from '../ProfileSections/ProfileSections'
+import { Link } from 'react-router-dom'
 export const Profile = () => {
+  const disptach = useDispatch()
   return (
     <div className='max-w-[368px] min-w-[300px] w-full h-full px-5 py-[30px] bg-white rounded-xl sticky top-0'>
       <div className='border-b pb-3 mb-3'>
         <div className="relative flex justify-center items-center flex-col">
-          <ButtonIcon
-            icon="icon-pencil"
-            className="absolute top-0 right-0 w-[28px] h-[28px]"
-            onClick={() => console.log("click")}
-          />
+          <Link to='resume'>
+            <ButtonIcon
+              icon="icon-pencil"
+              className="absolute top-0 right-0 w-[28px] h-[28px]"
+              onClick={() => console.log('resume')}
+            />
+          </Link>
+
           <span className="flex items-center justify-center w-[110px] h-[110px] mb-5 rounded-full overflow-hidden border ">
             <img src={avatar} alt="avatar" className='w-[80%] h-[80%] object-cover ' />
           </span>
@@ -31,13 +39,13 @@ export const Profile = () => {
         </div>
         <span className="btn-block btn-block_green"><span>Available For Work</span></span>
       </div>
-      <div className="mb-5">
+      {/* <div className="mb-5">
         <div className="flex justify-between items-center gab-1 mb-7">
           <span className='font-bold'>Experience</span>
           <ButtonIcon
             icon="icon-pencil"
             className="w-[28px] h-[28px]"
-            onClick={() => console.log("click")}
+            onClick={() => disptach(setPopUp('experience'))}
           />
         </div>
         <div className="flex gap-3 mb-3">
@@ -85,7 +93,9 @@ export const Profile = () => {
             <span className="block font-bold  text-gray text-xs mb-1">2018 - 2021 - Present 3 Years</span>
           </div>
         </div>
-      </div>
+      </div> */}
+
+      <ProfileSections aside={true} />
       <div className="mb-5">
         <div className="flex justify-between items-center gab-1 mb-7">
           <span className='font-bold'>Skills</span>

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { setPopUp } from '../../redux/slices/jobsSlice'
 import { setForUdateData } from '../../redux/slices/profileSlice'
 
-export const ProfileSection = ({ title, children, NoRedact,addItem, editArray,data, id}) => {
+export const ProfileSection = ({ title, children, NoRedact,addItem, editArray,data, id, aside}) => {
    const dispatch = useDispatch()
    const onEdit = () => {
       dispatch(setPopUp(editArray))
@@ -14,7 +14,7 @@ export const ProfileSection = ({ title, children, NoRedact,addItem, editArray,da
     
    }
    return (
-      <div className="mb-[23px] p-6 rounded-xl bg-white">
+      <div className={`mb-[23px]  rounded-xl bg-white ${!aside ? 'p-6' : ''}`}>
          <div className="flex justify-between items-center gab-1 mb-7">
             <span className='text-blackColor font-bold text-lg'>{title}</span>
             {

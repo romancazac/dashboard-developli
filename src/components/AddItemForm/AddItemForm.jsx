@@ -9,7 +9,7 @@ import uuid from 'react-uuid';
 
 
 
-export const AddItemForm = ({ name, setApply }) => {
+export const AddItemForm = ({ name }) => {
    const disptach = useDispatch();
    const [perioad, setPerioad] = useState({ from: '', to: '' });
    const { popUp } = useSelector(state => state.jobs)
@@ -25,7 +25,7 @@ export const AddItemForm = ({ name, setApply }) => {
          .required('Required'),
 
    });
-
+  
    const onAddItems = async (values, actions) => {
 
       if (forUpdateData[1].redact) {
@@ -49,10 +49,10 @@ export const AddItemForm = ({ name, setApply }) => {
       <Formik
          initialValues={{
 
-            position: `${forUpdateData[1].redact ? forUpdateData[2].name : ''}`,
-            employment: `${forUpdateData[1].redact ? forUpdateData[2].employment : ''}`,
-            agency: `${forUpdateData[1].redact ? forUpdateData[2].agency : ''}`,
-            location: `${forUpdateData[1].redact ? forUpdateData[2].name : ''}`,
+            position: `${forUpdateData[1]?.redact ? forUpdateData[2]?.name : ''}`,
+            employment: `${forUpdateData[1]?.redact ? forUpdateData[2]?.employment : ''}`,
+            agency: `${forUpdateData[1]?.redact ? forUpdateData[2]?.agency : ''}`,
+            location: `${forUpdateData[1]?.redact ? forUpdateData[2]?.name : ''}`,
 
          }}
          validationSchema={CreateSchema}

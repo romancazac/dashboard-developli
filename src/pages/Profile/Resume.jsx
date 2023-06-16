@@ -4,12 +4,14 @@ import { ProfileItem } from '../../components/ui/ProfileItem'
 
 import { UploadFile } from '../../components/UploadFile/UploadFile'
 import { File } from '../../components/ui/File'
-import { AcademicCapIcon } from '@heroicons/react/20/solid'
+import { AcademicCapIcon, BriefcaseIcon, LanguageIcon } from '@heroicons/react/20/solid'
 import { ProfileItemIcon } from '../../components/ProfileItemIcon/ProfileItemIcon'
 import { useDispatch, useSelector } from 'react-redux'
 import UpdatePopup from '../../components/UpdatePopup/UpdatePopup'
 import { setPopUp } from '../../redux/slices/jobsSlice'
 import UpdatePopupAdd from '../../components/UpdatePopupAdd/UpdatePopupAdd'
+import { ProfileSections } from '../../components/ProfileSections/ProfileSections'
+import VideoCvPopup from '../../components/VideoCvPopup/VideoCvPopup'
 
 
 export const Resume = () => {
@@ -27,7 +29,7 @@ export const Resume = () => {
 
   }
 
- 
+
 
   return (
     <>
@@ -36,7 +38,7 @@ export const Resume = () => {
         title='Personal information'
         editArray={'personalInfo'}
         data={profileData[0]?.personalInfo[0]}
-     
+
         id={0}
       >
 
@@ -51,7 +53,7 @@ export const Resume = () => {
         title='Contacts'
         editArray={'contacts'}
         data={profileData[1]?.contacts[0]}
-  
+
         id={1}
       >
 
@@ -76,13 +78,17 @@ export const Resume = () => {
         </div>
         <UploadFile setSelectedFiles={setSelectedFiles} />
       </ProfileSection>
+      <ProfileSection title='Video cv'  editArray={'videoCv'}>
+   
+        
+      </ProfileSection>
 
-      <ProfileSection
+      {/* <ProfileSection
         title='Experience'
-        addItem={true}
+        addItem={profileData[2]?.experience?.length > 0 ? false : true }
         editArray={'experience'}
         data={profileData[2]?.experience}
-   
+
         id={2}
       >
 
@@ -91,7 +97,7 @@ export const Resume = () => {
 
             <ProfileItemIcon
               key={exp.id}
-              icon={<AcademicCapIcon className='w-5' />}
+              icon={<BriefcaseIcon className='w-5' />}
               name={exp.position}
               position={exp.agency}
               term={exp.perioad}
@@ -111,14 +117,15 @@ export const Resume = () => {
         editArray={'education'}
         id={3}
         data={profileData[3]?.education}
- 
+        addItem={profileData[3]?.education?.length > 0 ? false : true }
       >
-
+   
         {
-          profileData[3]?.education?.map((exp, i) =>
+
+          profileData[3]?.education?.map((exp) =>
 
             <ProfileItemIcon
-              key={i}
+              key={exp.id}
               icon={<AcademicCapIcon className='w-5' />}
               name={exp.position}
               position={exp.agency}
@@ -128,22 +135,47 @@ export const Resume = () => {
               editArray={'education'}
               id={3}
             />
+            
           )
         }
 
       </ProfileSection>
-      <ProfileSection title='Languages' addItem={true} editArray={'languages'}>
+      <ProfileSection
+        title='Languages'
+        addItem={profileData[4]?.languages.length > 0 ? false : true }
+        editArray={'languages'}
+        data={profileData[4]?.languages}
+        id={4}
+        >
+        {
+          profileData[4]?.languages?.map((exp) =>
 
+            <ProfileItemIcon
+              key={exp.id}
+              icon={<LanguageIcon className='w-5' />}
+              name={exp.position}
+              position={exp.agency}
+              term={exp.perioad}
+              employment={exp.employment}
+              idItem={exp.id}
+              editArray={'languages'}
+              id={4}
+            />
+          
+          )
+        }
 
-      </ProfileSection>
+      </ProfileSection> */}
+      <ProfileSections/>
 
       {
         (popUp === 'personalInfo' || popUp === 'contacts') && <UpdatePopup open={popUp === 'personalInfo' || popUp === 'contacts'} handleOpen={() => dispatch(setPopUp(''))} />
       }
-
-      {(popUp === 'experience' || popUp === 'education') && <UpdatePopupAdd open={popUp === 'experience' || popUp === 'education'} handleOpen={() => dispatch(setPopUp(''))} />}
+      <VideoCvPopup open={popUp === 'videoCv'} handleOpen={() => dispatch(setPopUp(''))} />
+{/* 
+      {(popUp === 'experience' || popUp === 'education' || popUp === 'languages') && <UpdatePopupAdd open={popUp === 'experience' || popUp === 'education' || popUp === 'languages'} handleOpen={() => dispatch(setPopUp(''))} />} */}
     </>
 
-
+      
   )
 }
