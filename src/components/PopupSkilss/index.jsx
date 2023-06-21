@@ -14,7 +14,7 @@ import { ProfileItemIcon } from "../ProfileItemIcon/ProfileItemIcon";
 import { AddItemForm } from "../AddItemForm/AddItemForm";
 
 
-export default function UpdatePopupAdd({ open, handleOpen }) {
+export default function PopupSkilss({ open, handleOpen }) {
 
    const disptach = useDispatch();
    const { forUpdateData, profileData } = useSelector(state => state.profile)
@@ -32,24 +32,16 @@ export default function UpdatePopupAdd({ open, handleOpen }) {
             <DialogBody className="overflow-y-auto p-0 md:h-96">
                <div className="border-b border-color-[#F3F3F3] mb-2">
                   {
-                     !forUpdateData[1]?.redact &&
-                     profileData[forUpdateData[0]][popUp]?.map((item) =>
-
-                        <ProfileItemIcon
-                           key={item.id}
-                           icon={<AcademicCapIcon className='w-5' />}
-                           name={item.position}
-                           employment={item.employment}
-                           position={item.agency}
-                           term={item.perioad}
-                           id={item.id}
-                        />
-
+                     profileData[forUpdateData[0]]?.skilss?.map((item) => 
+                      <input type="text" name="" id="" value={item.skill}/>
                      )
 
+                       
+                     
+                     
                   }
                </div>
-               <AddItemForm />
+              
 
             </DialogBody>
 

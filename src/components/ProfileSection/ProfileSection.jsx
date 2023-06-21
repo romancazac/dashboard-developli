@@ -11,7 +11,7 @@ export const ProfileSection = ({ title, children, NoRedact,addItem, editArray,da
    const onEdit = () => {
       dispatch(setPopUp(editArray))
       dispatch(setForUdateData([id,data]))
-    
+      
    }
    return (
       <div className={`mb-[23px]  rounded-xl bg-white ${!aside ? 'p-6' : ''}`}>

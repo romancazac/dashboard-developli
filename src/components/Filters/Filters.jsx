@@ -224,7 +224,7 @@ export const Filters = () => {
     
 
        < >
-          <div className={`max-w-[316px] h-full w-full bg-white rounded-xl px-[20px] py-[25px] md:h-full md:flex md:flex-col`}>
+          <div className={`w-[316px] flex-[0_0_316px] h-full   bg-white rounded-xl px-[20px] py-[25px] md:h-full md:flex md:flex-col`}>
              {/* {renderTopMob()} */}
              {
                 asideData.map((item) =>

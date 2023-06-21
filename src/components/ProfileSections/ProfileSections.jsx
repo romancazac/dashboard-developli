@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { ProfileItemIcon } from '../ProfileItemIcon/ProfileItemIcon'
 
 import { AcademicCapIcon, BriefcaseIcon, LanguageIcon } from '@heroicons/react/20/solid'
+import { ProfileItem } from '../ui/ProfileItem'
 export const ProfileSections = ({ aside }) => {
    const { profileData } = useSelector(state => state.profile)
 
@@ -72,6 +73,7 @@ export const ProfileSections = ({ aside }) => {
             }
 
          </ProfileSection>
+
          <ProfileSection
             aside={aside}
             title='Languages'
@@ -99,8 +101,26 @@ export const ProfileSections = ({ aside }) => {
                )
             }
 
+         
          </ProfileSection>
+         
+         <ProfileSection
+            title='Skils'
+            editArray={'skilss'}
+            data={profileData[5]?.skilss[0]}
+            aside={aside}
+            id={5}
+         >
+            {profileData[5]?.skilss?.map((info) =>
+               Object.entries(info).map(([label, text]) =>
+                  <ProfileItem label={label} text={text} aside={aside} />
 
+               )
+            )}
+
+
+         
+         </ProfileSection>
       </>
    )
 }

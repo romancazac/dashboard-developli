@@ -69,14 +69,6 @@ export default function VideoCvPopup({ open, handleOpen }) {
 
             </DialogBody>
 
-            {/* 
-            <DialogFooter className="justify-start">
-               <button onClick={onUpdates} className='bg-green text-white px-6 py-3 font-semibold flex items-center gap-2 rounded-2xl hover:scale-105 ease-in-out duration-75 text-base'><span className='icon-file-text2'></span>Update</button>
-
-            </DialogFooter>
-
-
- */}
 
          </Dialog>
 

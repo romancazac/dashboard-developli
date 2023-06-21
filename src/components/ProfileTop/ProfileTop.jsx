@@ -1,17 +1,26 @@
 import React from 'react'
 import Select from '../../components/ui/Select'
 import { EyeIcon } from '@heroicons/react/20/solid'
+import { useDispatch } from 'react-redux'
+import { setAvailabil } from '../../redux/slices/profileSlice'
 export const ProfileTop = () => {
+   const dispatch = useDispatch();
+
    const dataVisible = [
       {
-         id: 1,
-         name: "Hidden"
+         id: 0,
+         name: "Vissible",
+         label: true
       },
       {
-         id: 2,
-         name: "Vissible"
-      },
+         id: 1,
+         name: "Hidden",
+         label: false
+      }
+
    ]
+
+  
    return (
 
       <div className="flex justify-between gap-2 mb-7">
@@ -22,7 +31,7 @@ export const ProfileTop = () => {
          <div className="flex items-center gap-3">
             <div className="flex items-center gap-3">
                <span className='text-gray'>Status</span>
-               <Select data={dataVisible} onDispatch={() => console.log('dispatch')} className={'bg-white w-[144px] rounded-xl h-[40px] font-bold text-blackColor'}/>
+               <Select data={dataVisible} onDispatch={(s) => dispatch(setAvailabil(s.label))} className={'bg-white w-[144px] rounded-xl h-[40px] font-bold text-blackColor'} />
             </div>
             <button className="btn-block btn-block_gray gap-2">
                <EyeIcon className='w-4' />

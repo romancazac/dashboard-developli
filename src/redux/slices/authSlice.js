@@ -69,7 +69,7 @@ const userSlice = createSlice({
       phone: null,
       loading: false,
       error: null,
-      popUp: false,
+
       registrationForm:false
     },
     reducers: {
@@ -79,9 +79,6 @@ const userSlice = createSlice({
         state.token = null;
         state.loading = false;
         state.error = null;
-      },
-      setOpenPop: (state, action) => {
-         state.popUp = action.payload
       },
       setRegistration: (state, action) => {
         state.registrationForm = action.payload

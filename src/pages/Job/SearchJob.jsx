@@ -67,8 +67,8 @@ export const SearchJob = () => {
 
       {totalItems == jobsData.length || <BtnLoader onClick={loadMoreJobs} loading={status}>Load More</BtnLoader>}
 
-      <DetailsPopUp open={popUp === 'information'} handleOpen={() => dispatch(setPopUp(''))} {...job} className='overflow-auto' />
-      <TestPopUp open={popUp === 'test'} handleOpen={() => dispatch(setPopUp(''))} avatar={job.avatar} name={job.name} />
+      {/* <DetailsPopUp open={popUp === 'information'} handleOpen={() => dispatch(setPopUp(''))} {...job} className='overflow-auto' /> */}
+      {/* <TestPopUp open={popUp === 'test'} handleOpen={() => dispatch(setPopUp(''))} avatar={job.avatar} name={job.name} /> */}
     </>
   )
 }

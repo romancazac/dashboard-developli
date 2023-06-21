@@ -108,11 +108,6 @@ export const fetchAddItem = createAsyncThunk(
       const updatedSection = profileData[id]?.[section].filter(
         (item) => item.id !== itemId
       );
-
-      // const updatedProfileInfo = profileData.map((item) =>
-      //   item.id === id ? { ...item, [section]: updatedSection } : item
-      // );
-
       await axios.put(`${BASE_URL}/profile-info/${id}`, {
         ...profileData[id],
         [section]: updatedSection
@@ -128,7 +123,8 @@ export const fetchAddItem = createAsyncThunk(
 const initialState = {
    profileData: {},
    forUpdateData: [],
-   status:''
+   status:'',
+   availabile:true,
 
 }
 
@@ -139,6 +135,9 @@ export const profileSlice = createSlice({
       setForUdateData(state, action) {
 
          state.forUpdateData= action.payload
+      },
+      setAvailabil(state, action) {
+        state.availabile = action.payload;
       }
 
    },
@@ -160,5 +159,5 @@ export const profileSlice = createSlice({
    }
 })
 
-export const {setForUdateData} = profileSlice.actions;
+export const {setForUdateData, setAvailabil} = profileSlice.actions;
 export default profileSlice.reducer

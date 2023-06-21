@@ -33,30 +33,30 @@ export default function UpdatePopup({ open, handleOpen }) {
 
    const renderArr = (arr, label) => {
       return (
-        <div className="w-full">
-          {arr?.map((t, i) => (
-            <div className="flex gap-2 items-center mb-4 group" key={i}>
-              <span className={`${t.icon} text-green w-3`}></span>
-              <p className="text-gray group-hover:text-green group-hover:underline">
-                {t.name}
-              </p>
-              <input
-                value={updates[label][i].url}
-                onChange={(e) =>
-                  setUpdates({
-                    ...updates,
-                    [label]: updates[label].map((item, index) =>
-                      index === i ? { ...item, url: e.target.value } : item
-                    ),
-                  })
-                }
-                className="text-blackColor w-full outline-[green]"
-              />
-            </div>
-          ))}
-        </div>
+         <div className="w-full">
+            {arr?.map((t, i) => (
+               <div className="flex gap-2 items-center mb-4 group" key={i}>
+                  <span className={`${t.icon} text-green w-3`}></span>
+                  <p className="text-gray group-hover:text-green group-hover:underline">
+                     {t.name}
+                  </p>
+                  <input
+                     value={updates[label][i].url}
+                     onChange={(e) =>
+                        setUpdates({
+                           ...updates,
+                           [label]: updates[label].map((item, index) =>
+                              index === i ? { ...item, url: e.target.value } : item
+                           ),
+                        })
+                     }
+                     className="text-blackColor w-full outline-[green]"
+                  />
+               </div>
+            ))}
+         </div>
       );
-    };
+   };
    return (
       <Fragment >
          <Dialog size="xl" open={open} handler={handleOpen} className="max-w-[700px!important] min-w-[auto]  overflow-auto  md:min-w-[90%] p-5">
@@ -79,21 +79,10 @@ export default function UpdatePopup({ open, handleOpen }) {
                                  <input
                                     value={updates[label]}
                                     onChange={(e) => setUpdates({ ...updates, [label]: e.target.value })} className='text-blackColor w-full outline-[green]' />
-
-
-
                         }
-
-
                      </div>
-
-
-
                   )
                }
-
-
-
             </DialogBody>
 
 

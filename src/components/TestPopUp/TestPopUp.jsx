@@ -9,11 +9,13 @@ import ButtonIcon from "../ui/ButtonIcon";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { Quiz } from "../Quiz/Quiz";
 import { useAppServices } from "../../services/appServices";
+import { useSelector } from "react-redux";
 
-export default function TestPopUp({ open, handleOpen, name, avatar }) {
+export default function TestPopUp({ open, handleOpen }) {
    const { getQuestions } = useAppServices()
    const [start, setStart] = useState(false);
    const [questions, setQuestions] = useState([]);
+   const {singleJob} = useSelector(state => state.jobs);
 
    useEffect(() => {
       getQuestions().then((data) => setQuestions(data))
@@ -28,9 +30,9 @@ export default function TestPopUp({ open, handleOpen, name, avatar }) {
          <Dialog size="xl" open={open} handler={handleOpen} className="max-w-[700px!important] min-w-[auto]  overflow-auto  md:min-w-[90%] p-5">
             <DialogHeader className="flex items-start justify-between gap-1 p-0 mb-3">
                {
-                  !start &&
+                  !start && 
                   <span className="block w-[90px] h-[90px] rounded-full bg-[#F5F7FF]">
-                     <img src={avatar} alt='avatar' className="w-full h-full object-cover" />
+                     <img src={singleJob.avatar} alt='avatar' className="w-full h-full object-cover" />
                   </span>
                }
 
@@ -42,8 +44,8 @@ export default function TestPopUp({ open, handleOpen, name, avatar }) {
                   start ? <Quiz questions={questions} />
                      :
                      <>
-                        <h4 className="text-blackColor font-bold text-[22px] ">{name} Test</h4>
-                        <span className="">Test your {name} knowledge</span>
+                        <h4 className="text-blackColor font-bold text-[22px] ">{singleJob.name} Test</h4>
+                        <span className="">Test your {singleJob.name} knowledge</span>
 
                         <div className="mb-10 mt-11">
                            <h5 className="text-[#1B2124] text-lg font-bold mb-4 ">Requirements</h5>

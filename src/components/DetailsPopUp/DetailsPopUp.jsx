@@ -12,16 +12,18 @@ import {
 import ButtonIcon from "../ui/ButtonIcon";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { ApplyForm } from "../ApplyForm/ApplyForm";
+import { useSelector } from "react-redux";
 
-export default function DetailsPopUp({ open, handleOpen,date, name, author, avatar, country, experience, level, requirements, salary, text, types }) {
+export default function DetailsPopUp({ open, handleOpen}) {
    const [apply, setApply] = useState(false);
-
+   const {singleJob} = useSelector(state => state.jobs);
+   const {date, name, author, avatar, country, experience, level, requirements, salary, text, types } = singleJob
    return (
       <Fragment >
         
 
      
-         <Dialog size="xl" open={open} handler={handleOpen} className="max-w-[900px!important] min-w-[auto] h-[99%] overflow-auto  md:min-w-[90%] p-5">
+         <Dialog size="xl" open={open} handler={handleOpen} className="max-w-[900px!important] min-w-[auto] max-h-[99%] overflow-auto  md:min-w-[90%] p-5">
             <DialogHeader className="flex items-start justify-between gap-1 p-0 mb-3">
                {
                   apply ?

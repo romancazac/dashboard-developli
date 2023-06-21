@@ -71,6 +71,24 @@
    }
 
  }
+ .card-job-enter {
+  opacity: 0;
+}
+
+.card-job-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.card-job-exit {
+  opacity: 1;
+}
+
+.card-job-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+ 
  @font-face {
    font-family: 'icomoon';
    src:  url('../public/fonts/icomoon.eot?sz63un');

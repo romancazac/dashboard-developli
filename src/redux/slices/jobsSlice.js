@@ -23,13 +23,16 @@ export const fetchJobs = createAsyncThunk(
 
 const initialState = {
    jobsData: [],
+   savedJobs:[],
+   singleJob:{},
    totalCount: 5,
    totalItems: '',
    status: "loading",
    jobSearch: {},
    filter: [],
    sort:'',
-   popUp:''
+   popUp:'',
+
 
 }
 
@@ -46,6 +49,9 @@ export const jobsSlice = createSlice({
       },
       setSearchRes(state) {
          state.jobSearch = ''
+      },
+      setSingleJob(state,action) {
+         state.singleJob = action.payload
       },
       setJobs(state, action) {
          state.jobsData = action.payload
@@ -66,6 +72,20 @@ export const jobsSlice = createSlice({
       },
       setPopUp(state, action){
          state.popUp = action.payload
+      },
+      setSavedJob(state, action) {
+   
+         const itemIndex = state.savedJobs.findIndex((item) => item.id === action.payload.id);
+         
+         if(itemIndex !== -1) {
+            state.savedJobs = state.savedJobs.filter((item) => item.id !== action.payload.id)
+         } else {
+            state.savedJobs.push(action.payload)
+         }
+         localStorage.setItem('saved', JSON.stringify(state.savedJobs))
+      },
+      setSavedJobsFromLs(state, action) {
+         state.savedJobs = action.payload
       }
 
    },
@@ -91,7 +111,7 @@ export const jobsSlice = createSlice({
    }
 })
 
-export const { setTotalCount, setSearchJob, setSearchRes, setJobs, setFilters, setSort,setPopUp } = jobsSlice.actions;
+export const { setSingleJob,setSavedJobsFromLs,setSavedJob, setTotalCount, setSearchJob, setSearchRes, setJobs, setFilters, setSort,setPopUp } = jobsSlice.actions;
 
 export const selectJobs = (state) => state.jobs.jobsData
 
