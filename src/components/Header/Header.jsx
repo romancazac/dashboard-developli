@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import avatar from '../../assets/img/avatar.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { setSearchJob } from '../../redux/slices/jobsSlice';
 export const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [search, setSearch] = useState({name:''})
+  const onSearch = () => {
+    dispatch(setSearchJob({name:search.name}))
+    navigate('search-job')
+  }
   return (
     <header className='flex justify-between items-center pt-6 mb-14'>
       <div className="flex items-center max-w-[336px] bg-white rounded-xl py-1 pl-5 pr-1">
         <div className="flex items-center gap-3 mr-1">
           <span className='icon-search text-2xl text-[#7F879E]'></span>
-          <input type="text" placeholder='Search for a job' className='p-1 outline-0' />
+          <input value={search.name} onChange={(e) => setSearch({name:e.target.value})} type="text" placeholder='Search for a job' className='p-1 outline-0' />
         </div>
-        <button className='flex items-center justify-center h-10 px-4 rounded-xl bg-[#EAEDEE] text-blackColor'>All</button>
+        <button onClick={onSearch} className='flex items-center justify-center h-10 px-4 rounded-xl bg-[#EAEDEE] text-blackColor'>All</button>
       </div>
       <ul className='flex gap-7'>
         <li className='relative flex justify-center items-center w-12 h-12 rounded-full bg-white duration-300 ease-in-out hover:bg-green hover:text-white'>

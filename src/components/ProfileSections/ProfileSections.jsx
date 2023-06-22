@@ -23,7 +23,7 @@ export const ProfileSections = ({ aside }) => {
          >
 
             {
-               profileData[2]?.experience?.map((exp, i) =>
+               profileData[2]?.experience?.map((exp) =>
 
                   <ProfileItemIcon
                      key={exp.id}
@@ -113,7 +113,7 @@ export const ProfileSections = ({ aside }) => {
          >
             {profileData[5]?.skilss?.map((info) =>
                Object.entries(info).map(([label, text]) =>
-                  <ProfileItem label={label} text={text} aside={aside} />
+                  <ProfileItem label={label} text={text} aside={aside} key={label}/>
 
                )
             )}

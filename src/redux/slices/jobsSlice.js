@@ -85,7 +85,7 @@ export const jobsSlice = createSlice({
          localStorage.setItem('saved', JSON.stringify(state.savedJobs))
       },
       setSavedJobsFromLs(state, action) {
-         state.savedJobs = action.payload
+         state.savedJobs =  action.payload || []
       }
 
    },

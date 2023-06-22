@@ -7,10 +7,7 @@ export const useAppServices = () => {
     const { request, error, loading, succes } = useHttp()
 
     const getAllJobs = () => {
-
         return request(`${BASE_URL}/jobs`)
-
-
     }
     const getQuestions = () => {
         return request(`${BASE_URL}/testQuestion`)

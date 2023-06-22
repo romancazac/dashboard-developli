@@ -12,12 +12,7 @@ import { setAccordion } from "../../redux/slices/accordionSlice";
 export const Aside = () => {
   const dispatch = useDispatch()
   const { accordion } = useSelector(state => state.accordion)
-  // const [open, setOpen] = useState(0);
-
-  // const handleOpen = (value) => {
-  //   setOpen(open === value ? 0 : value);
-  // };
-
+ 
 
   return (
     <Card className="fixed top-0 left-0 h-full w-full max-w-[260px] overflow-y-auto overflow-x-hidden  p-4  rounded-none shadow-none  ">
