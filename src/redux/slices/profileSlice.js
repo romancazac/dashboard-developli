@@ -6,8 +6,14 @@ import { BASE_URL } from "../../constants"
 export const fetchProfileInfo = createAsyncThunk(
    'profile/fetchProfileStatus',
    async () => {
+    try {
       const response = await axios.get(`${BASE_URL}/profile-info`)
+      console.log(response)
       return response.data
+    } catch (error) {
+      console.log(error)
+    }
+      
    }
 )
 
@@ -39,7 +45,7 @@ export const fetchAddItem = createAsyncThunk(
    }
  );
  export const fetchPostItem = createAsyncThunk(
-   'profile/addItemStatus',
+   'profile/fetchPostItem',
    async (params, { getState }) => {
       const {updates, section, id} = params;
      
@@ -61,7 +67,7 @@ export const fetchAddItem = createAsyncThunk(
    }
  );
  export const fetchUpdateItem = createAsyncThunk(
-  'profile/updateItemStatus',
+  'profile/fetchUpdateItem ',
   async (params, { getState }) => {
     const { updates, section, id, objId } = params;
 
@@ -98,7 +104,7 @@ export const fetchAddItem = createAsyncThunk(
   }
 );
  export const fetchDeleteItem = createAsyncThunk(
-  'profile/deleteItemStatus',
+  'profile/fetchDeleteItem',
   async (params, { getState }) => {
     const { section, id, itemId } = params;
 
@@ -121,7 +127,7 @@ export const fetchAddItem = createAsyncThunk(
   }
 );
 const initialState = {
-   profileData: {},
+   profileData: [],
    forUpdateData: [],
    status:'',
    availabile:true,
@@ -148,10 +154,12 @@ export const profileSlice = createSlice({
       
       },
       [fetchProfileInfo.fulfilled]: (state, action) => {
+      
          state.profileData= action.payload;
          state.status = 'succes';
       },
-      [fetchProfileInfo.rejected]: (state) => {
+      [fetchProfileInfo.rejected]: (state,action) => {
+     
          state.status = 'error';
          state.profileData= [];
         

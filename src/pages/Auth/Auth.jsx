@@ -1,8 +1,10 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import logo from '../../assets/img/logo.png'
-import dashboard from '../../assets/img/dash.png'
+
 import CarouselAuth from '../../components/CarouselAuth/CarouselAuth'
+import logo from '../../assets/img/logo.png'
+
+
 export const Auth = () => {
   return (
     <div className='relative h-[100vh] bg-white'>

@@ -7,7 +7,7 @@ import { ProfileSections } from '../ProfileSections/ProfileSections'
 import { Link } from 'react-router-dom'
 
 export const Profile = () => {
- const {availabile} = useSelector(state => state.profile)
+ const {availabile,profileData} = useSelector(state => state.profile)
   return (
     <div className='max-w-[368px] min-w-[300px] w-full h-full px-5 py-[30px] bg-white rounded-xl sticky top-0'>
       <div className='border-b pb-3 mb-3'>
@@ -23,8 +23,8 @@ export const Profile = () => {
           <span className="flex items-center justify-center w-[110px] h-[110px] mb-5 rounded-full overflow-hidden border ">
             <img src={avatar} alt="avatar" className='w-[80%] h-[80%] object-cover ' />
           </span>
-          <span className='inline-block text-lg font-bold text-blackColor mb-1'>Mawiyah Sawaya</span>
-          <span className='font-semibold'>Java Engeneer</span>
+          <span className='inline-block text-lg font-bold text-blackColor mb-1'>{profileData[0]?.personalInfo[0]?.fullName}</span>
+          <span className='font-semibold'>{profileData[0]?.personalInfo[0]?.speciality}</span>
         </div>
 
 

@@ -7,11 +7,13 @@ import logo from '../../assets/img/logo.png'
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setAccordion } from "../../redux/slices/accordionSlice";
+import { logout } from "../../redux/slices/authSlice";
 
 
 export const Aside = () => {
   const dispatch = useDispatch()
   const { accordion } = useSelector(state => state.accordion)
+  
  
 
   return (
@@ -55,11 +57,11 @@ export const Aside = () => {
             <NavLink to='search-job' className='font-medium [&.active]:text-blueColor'>
               Search Job
             </NavLink>
-            <NavLink to='my-application' className='font-medium [&.active]:text-blueColor'>
-              My Application
-            </NavLink>
             <NavLink to='Saved' className='font-medium [&.active]:text-blueColor'>
               Job Saved
+            </NavLink>
+            <NavLink to='my-application' className='font-medium [&.active]:text-blueColor'>
+              My Application
             </NavLink>
           </AccordionBody>
         </Accordion>
@@ -74,16 +76,6 @@ export const Aside = () => {
             Messages
           </div>
           <span className="bg-[rgba(71,209,140,0.05)] rounded-[10px] text-xs text-green py-1 px-[10px]">84</span>
-
-        </NavLink>
-        <NavLink to='my-interviews'
-          className="flex 
-          items-center gap-3 px-5 py-3 rounded-xl 
-        [&.active]:text-green [&.active]:bg-green [&.active]:text-white"
-          onClick={() => dispatch(setAccordion(0))}
-        >
-          <span className="icon-calendar" ></span>
-          My interviews
 
         </NavLink>
         <Accordion
@@ -119,6 +111,16 @@ export const Aside = () => {
 
           </AccordionBody>
         </Accordion>
+        <NavLink to='my-interviews'
+          className="flex 
+          items-center gap-3 px-5 py-3 rounded-xl 
+        [&.active]:text-green [&.active]:bg-green [&.active]:text-white"
+          onClick={() => dispatch(setAccordion(0))}
+        >
+          <span className="icon-calendar" ></span>
+          My interviews
+
+        </NavLink>
         <NavLink to='company'
           className="flex 
           items-center gap-3 px-5 py-3 rounded-xl 
@@ -148,10 +150,10 @@ export const Aside = () => {
       </List>
 
       <button className="flex items-center gap-3 px-5 py-3 rounded-xl text-[#F05817] font-medium  hover:text-green" >
-        <div className="flex items-center gap-3 flex-auto">
+        <button onClick={() => dispatch(logout())} className="flex items-center gap-3 flex-auto">
           <span className="icon-logout" />
           Logout
-        </div>
+        </button>
       </button>
     </Card>
   );

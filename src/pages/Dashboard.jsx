@@ -8,6 +8,12 @@ import CardJob from '../components/CardJob/CardJob'
 import { fetchAddItem, setForUdateData } from '../redux/slices/profileSlice'
 import { setPopUp } from '../redux/slices/jobsSlice'
 
+import l1 from '../assets/img/cadidats/01.png'
+import l2 from '../assets/img/cadidats/02.png'
+import l3 from '../assets/img/cadidats/03.png'
+import l4 from '../assets/img/cadidats/04.png'
+import l5 from '../assets/img/cadidats/05.png'
+
 
 export const Dashboard = () => {
   const dispatch = useDispatch();

@@ -42,6 +42,7 @@ function App() {
     dispatch(fetchProfileInfo())
     getSavedFromLs()
   }, [])
+
   return (
     <>
       <RouterProvider router={routes} />
