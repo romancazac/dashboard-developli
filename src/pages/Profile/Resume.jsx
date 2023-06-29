@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ProfileSection } from '../../components/ProfileSection/ProfileSection'
 import { ProfileItem } from '../../components/ui/ProfileItem'
 
 import { UploadFile } from '../../components/UploadFile/UploadFile'
 import { File } from '../../components/ui/File'
-import { AcademicCapIcon, BriefcaseIcon, LanguageIcon } from '@heroicons/react/20/solid'
-import { ProfileItemIcon } from '../../components/ProfileItemIcon/ProfileItemIcon'
+
 import { useDispatch, useSelector } from 'react-redux'
-import UpdatePopup from '../../components/UpdatePopup/UpdatePopup'
+
 import { setPopUp } from '../../redux/slices/jobsSlice'
-import UpdatePopupAdd from '../../components/UpdatePopupAdd/UpdatePopupAdd'
+
 import { ProfileSections } from '../../components/ProfileSections/ProfileSections'
 import VideoCvPopup from '../../components/VideoCvPopup/VideoCvPopup'
 
@@ -18,7 +17,8 @@ export const Resume = () => {
   const dispatch = useDispatch()
 
 
-  const { profileData } = useSelector(state => state.profile)
+  const { user } = useSelector(state => state.auth)
+  // const { profileData } = useSelector(state => state.auth)
   const { popUp } = useSelector(state => state.jobs)
 
   // cv upload function
@@ -37,32 +37,37 @@ export const Resume = () => {
       <ProfileSection
         title='Personal information'
         editArray={'personalInfo'}
-        data={profileData[0]?.personalInfo[0]}
+        data={user?.profileData[0]}
 
         id={0}
       >
 
-        {profileData[0]?.personalInfo?.map((info) =>
-          Object.entries(info).map(([label, text]) =>
+        {
+
+          Object.entries(user?.profileData[0] || []).map(([label, text]) =>
+
             <ProfileItem label={label} text={text} />
+
           )
-        )}
+        }
       </ProfileSection>
 
       <ProfileSection
         title='Contacts'
         editArray={'contacts'}
-        data={profileData[1]?.contacts[0]}
+        data={user?.profileData[1]}
 
         id={1}
       >
 
-        {
-          profileData[1]?.contacts?.map((contact) =>
-            Object.entries(contact).map(([hrf, arr]) =>
-              <ProfileItem label={hrf} text={arr} />
 
-            )
+
+        {
+
+
+          Object.entries(user?.profileData[1] || []).map(([label, text]) =>
+            <ProfileItem label={label} text={text} />
+
           )
         }
       </ProfileSection>
@@ -81,12 +86,11 @@ export const Resume = () => {
       <ProfileSection title='Video cv' editArray={'videoCv'}>
       </ProfileSection>
 
-      <ProfileSections aside={false}/>
+      <ProfileSections aside={false} />
 
-    
+
       <VideoCvPopup open={popUp === 'videoCv'} handleOpen={() => dispatch(setPopUp(''))} />
-      {/* 
-      {(popUp === 'experience' || popUp === 'education' || popUp === 'languages') && <UpdatePopupAdd open={popUp === 'experience' || popUp === 'education' || popUp === 'languages'} handleOpen={() => dispatch(setPopUp(''))} />} */}
+
     </>
 
 

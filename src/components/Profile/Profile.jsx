@@ -7,7 +7,9 @@ import { ProfileSections } from '../ProfileSections/ProfileSections'
 import { Link } from 'react-router-dom'
 
 export const Profile = () => {
- const {availabile,profileData} = useSelector(state => state.profile)
+ const {user} = useSelector(state => state.auth)
+
+ 
   return (
     <div className='max-w-[368px] min-w-[300px] w-full h-full px-5 py-[30px] bg-white rounded-xl sticky top-0'>
       <div className='border-b pb-3 mb-3'>
@@ -23,8 +25,8 @@ export const Profile = () => {
           <span className="flex items-center justify-center w-[110px] h-[110px] mb-5 rounded-full overflow-hidden border ">
             <img src={avatar} alt="avatar" className='w-[80%] h-[80%] object-cover ' />
           </span>
-          <span className='inline-block text-lg font-bold text-blackColor mb-1'>{profileData[0]?.personalInfo[0]?.fullName}</span>
-          <span className='font-semibold'>{profileData[0]?.personalInfo[0]?.speciality}</span>
+          <span className='inline-block text-lg font-bold text-blackColor mb-1'>{user?.profileData[0].fullName}</span>
+          <span className='font-semibold'>{user?.profileData[0].speciality }</span>
         </div>
 
 
@@ -34,7 +36,9 @@ export const Profile = () => {
           <span className='font-bold'>Availability</span>
          
         </div>
-        <span className="btn-block btn-block_green"><span>{availabile ?`Available For Work` : 'Not Available For Work'}</span></span>
+        <span className="btn-block btn-block_green"><span>{user?.profileData[6].available ? `Available For Work` : 'Not Available For Work'}</span></span>
+    
+      
       </div>
 
 

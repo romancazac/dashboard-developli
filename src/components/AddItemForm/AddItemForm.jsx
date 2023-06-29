@@ -4,8 +4,10 @@ import { BriefcaseIcon, BuildingOffice2Icon, CalendarDaysIcon, MapPinIcon } from
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPostItem, fetchProfileInfo, fetchUpdateItem } from '../../redux/slices/profileSlice';
+import { fetchPostItem,  fetchUpdateItem } from '../../redux/slices/profileSlice';
+import { fetchProfileInfo } from '../../redux/slices/authSlice';
 import uuid from 'react-uuid';
+
 
 
 
@@ -39,6 +41,7 @@ export const AddItemForm = ({ name }) => {
          const updates = { ...values, perioad: perioad.to + '--' + perioad.from, id: uuid() }
          await disptach(fetchPostItem({ updates, section: popUp, id: forUpdateData[0] }))
          disptach(fetchProfileInfo())
+   
          actions.resetForm()
       }
 

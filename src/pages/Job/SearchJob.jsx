@@ -39,9 +39,10 @@ export const SearchJob = () => {
         jobsData.map((item) => <CardJob {...item}  />)
       )}
 
-      {totalItems == jobsData.length || <BtnLoader onClick={loadMoreJobs} loading={status}>Load More</BtnLoader>}
+      {totalItems === jobsData.length || <BtnLoader onClick={loadMoreJobs} loading={status}>Load More</BtnLoader>}
 
-     
+   
+   
     </>
   )
 }

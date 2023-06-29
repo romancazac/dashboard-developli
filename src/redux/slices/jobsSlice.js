@@ -8,14 +8,13 @@ export const fetchJobs = createAsyncThunk(
    'jobs/fetchJobsStatus',
    async (params) => {
       const { totalCount, filtersParams, sort,searchQ } = params
-      const response = await axios.get(`${BASE_URL}/jobs?_start=0&_end=${totalCount}${filtersParams.join('')}&_sort=${sort}${searchQ}`)
-      const totalItems = response.headers['x-total-count'];
-
-      // return response.data
+      // const response = await axios.get(`${BASE_URL}/jobs?_start=0&_end=${totalCount}${filtersParams.join('')}&_sort=${sort}${searchQ}`)
+      const response = await axios.get(`${BASE_URL}/jobs?limit=${totalCount}${filtersParams.join('')}&sortBy=${sort}${searchQ}`)
+      // const totalItems = response.headers['x-total-count'];
 
       return {
-         jobs: response.data,
-         totalItems
+         jobs: response.data.items,
+         totalItems:response.data.meta.total_items
       }
    }
 )

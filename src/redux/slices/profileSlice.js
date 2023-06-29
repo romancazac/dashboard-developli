@@ -3,123 +3,137 @@ import axios from "axios"
 import { BASE_URL } from "../../constants"
 
 
-export const fetchProfileInfo = createAsyncThunk(
-   'profile/fetchProfileStatus',
-   async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/profile-info`)
-      console.log(response)
-      return response.data
-    } catch (error) {
-      console.log(error)
-    }
-      
-   }
-)
-
+// function for redact personal info & contacts
 export const fetchAddItem = createAsyncThunk(
-   'profile/addItemStatus',
-   async (params, { getState }) => {
-      const {updates, section, id} = params;
-     
-     try {
-
-       const { profileData } = getState().profile;
-   
-       const updatedPersonalInfo = [
-         {
-           ...profileData[id]?.[section[0]],
-           ...updates,
-         },
-       ];
- 
-       await axios.patch(`${BASE_URL}/profile-info/${id}`, {
-         [section]: updatedPersonalInfo
-       });
- 
-       return updatedPersonalInfo;
-     } catch (error) {
-       console.error('Eroare la efectuarea cererii PATCH:', error);
-       throw error;
-     }
-   }
- );
- export const fetchPostItem = createAsyncThunk(
-   'profile/fetchPostItem',
-   async (params, { getState }) => {
-      const {updates, section, id} = params;
-     
-     try {
-
-       const { profileData } = getState().profile;
-   
-       const updatedPersonalInfo = [...profileData[id]?.[section], updates];
- 
-       await axios.put(`${BASE_URL}/profile-info/${id}`, {
-         [section]: updatedPersonalInfo
-       });
- 
-       return updatedPersonalInfo;
-     } catch (error) {
-       console.error('Eroare la efectuarea cererii put:', error);
-       throw error;
-     }
-   }
- );
- export const fetchUpdateItem = createAsyncThunk(
-  'profile/fetchUpdateItem ',
+  'profile/addItemStatus',
   async (params, { getState }) => {
-    const { updates, section, id, objId } = params;
+    const { updates, section, id } = params;
 
     try {
-      const { profileData } = getState().profile;
-      
-      const updatedSection = profileData[id][section].map(item => {
-        if (item.id === objId) {
+      const { user } = getState().auth;
+
+      // Copiază obiectul `profileData` din user și aplică modificările 
+      const updatedProfileData = user.profileData.map((data) => {
+        if (data.id === id) {
           return {
-            ...item,
-            ...updates
+            ...data,
+            ...updates,
           };
         }
-        return item;
+        return data;
       });
-
-      const updatedProfileData = {
-        ...profileData,
-        [id]: {
-          ...profileData[id],
-          [section]: updatedSection
-        }
-      };
-
-      await axios.patch(`${BASE_URL}/profile-info/${id}`, {
-        ...updatedProfileData[id]
-      });
-
-      return updatedSection;
+      const update = {
+        ...user,
+        profileData: updatedProfileData
+      }
+      await axios.patch(`${BASE_URL}/users/${user.id}`, update);
+      return updatedProfileData;
     } catch (error) {
       console.error('Eroare la efectuarea cererii PATCH:', error);
       throw error;
     }
   }
 );
- export const fetchDeleteItem = createAsyncThunk(
+// add item in exp, education, language
+export const fetchPostItem= createAsyncThunk(
+  'profile/fetchPostItem',
+  async (params, { getState }) => {
+    const { updates, section, id } = params;
+
+    try {
+      const { user } = getState().auth;
+
+     
+      const obj = {
+        ...user,
+        profileData: [
+          ...user.profileData
+        ]
+      };
+      
+      obj.profileData[id] = {
+        ...obj.profileData[id],
+        data: [...obj.profileData[id].data, updates]
+      };
+
+      await axios.patch(`${BASE_URL}/users/${user.id}`, obj);
+      
+       return obj 
+    } catch (error) {
+      console.error('Eroare la efectuarea cererii PATCH:', error);
+      throw error;
+    }
+  }
+);
+// redaction item in exp, education, language
+export const fetchUpdateItem = createAsyncThunk(
+  'profile/fetchUpdateItem',
+  async (params, { getState }) => {
+    const { updates, section, id, objId } = params;
+
+    try {
+      const { user } = getState().auth;
+
+      const updatedProfileData = user.profileData.map((item, index) => {
+        if (index === id) {
+          return {
+            ...item,
+            data: item.data.map((dataItem) => {
+              if (dataItem.id === objId) {
+                return updates;
+              }
+              return dataItem;
+            })
+          };
+        }
+        return item;
+      });
+
+      const obj = {
+        ...user,
+        profileData: updatedProfileData
+      };
+
+      await axios.patch(`${BASE_URL}/users/${user.id}`, obj);
+
+      return obj;
+    } catch (error) {
+      console.error('Eroare la efectuarea cererii PATCH:', error);
+      throw error;
+    }
+  }
+);
+
+// delete items in exp, education, language
+export const fetchDeleteItem = createAsyncThunk(
   'profile/fetchDeleteItem',
   async (params, { getState }) => {
     const { section, id, itemId } = params;
 
     try {
-      const { profileData } = getState().profile;
+      const { user } = getState().auth;
 
-      const updatedSection = profileData[id]?.[section].filter(
-        (item) => item.id !== itemId
-      );
-      await axios.put(`${BASE_URL}/profile-info/${id}`, {
-        ...profileData[id],
-        [section]: updatedSection
+
+
+      const updatedProfileData = user.profileData.map((item, index) => {
+        if (index === id) {
+          return {
+            ...item,
+            data: item.data.filter((dataItem) =>dataItem.id !== itemId)
+          };
+        }
+        return item;
       });
 
-      return updatedSection;
+      const obj = {
+        ...user,
+        profileData: updatedProfileData
+      };
+
+
+      await axios.patch(`${BASE_URL}/users/${user.id}`, obj);
+
+      return obj;
     } catch (error) {
       console.error('Eroare la efectuarea cererii put:', error);
       throw error;
@@ -127,45 +141,31 @@ export const fetchAddItem = createAsyncThunk(
   }
 );
 const initialState = {
-   profileData: [],
-   forUpdateData: [],
-   status:'',
-   availabile:true,
+  profileData: [],
+  forUpdateData: [],
+  status: '',
+  availabile: true,
 
 }
 
 export const profileSlice = createSlice({
-   name: 'profile',
-   initialState,
-   reducers: {
-      setForUdateData(state, action) {
+  name: 'profile',
+  initialState,
+  reducers: {
+    setProfileData(state, action) {
+      console.log(action.payload)
+      state.profileData = action.payload
+    },
+    setForUdateData(state, action) {
 
-         state.forUpdateData= action.payload
-      },
-      setAvailabil(state, action) {
-        state.availabile = action.payload;
-      }
+      state.forUpdateData = action.payload
+    },
+    setAvailabil(state, action) {
+      state.availabile = action.payload;
+    }
 
-   },
-   extraReducers: {
-      [fetchProfileInfo.pending]: (state) => {
-         state.status = 'loading';
-         state.profileData= [...state.profileData];
-      
-      },
-      [fetchProfileInfo.fulfilled]: (state, action) => {
-      
-         state.profileData= action.payload;
-         state.status = 'succes';
-      },
-      [fetchProfileInfo.rejected]: (state,action) => {
-     
-         state.status = 'error';
-         state.profileData= [];
-        
-      },
-   }
+  }
 })
 
-export const {setForUdateData, setAvailabil} = profileSlice.actions;
+export const { setForUdateData, setAvailabil, setProfileData } = profileSlice.actions;
 export default profileSlice.reducer

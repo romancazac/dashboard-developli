@@ -1,25 +1,21 @@
-import { Fragment, useEffect, useState } from "react";
-import {
-   Dialog,
-   DialogHeader,
-   DialogBody,
-   DialogFooter,
-
-} from "@material-tailwind/react";
+import { Fragment } from "react";
+import {Dialog, DialogHeader,   DialogBody} from "@material-tailwind/react";
+   
 import ButtonIcon from "../ui/ButtonIcon";
 import { AcademicCapIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAddItem, fetchProfileInfo } from "../../redux/slices/profileSlice";
+import {  useSelector } from "react-redux";
+
 import { ProfileItemIcon } from "../ProfileItemIcon/ProfileItemIcon";
 import { AddItemForm } from "../AddItemForm/AddItemForm";
 
 
 export default function UpdatePopupAdd({ open, handleOpen }) {
 
-   const disptach = useDispatch();
-   const { forUpdateData, profileData } = useSelector(state => state.profile)
-   const { popUp } = useSelector(state => state.jobs)
 
+   const { forUpdateData } = useSelector(state => state.profile)
+   const { user } = useSelector(state => state.auth)
+   const { popUp } = useSelector(state => state.jobs)
+   
 
 
    return (
@@ -33,7 +29,7 @@ export default function UpdatePopupAdd({ open, handleOpen }) {
                <div className="border-b border-color-[#F3F3F3] mb-2">
                   {
                      !forUpdateData[1]?.redact &&
-                     profileData[forUpdateData[0]][popUp]?.map((item) =>
+                     user?.profileData[forUpdateData[0]].data?.map((item) =>
 
                         <ProfileItemIcon
                            key={item.id}

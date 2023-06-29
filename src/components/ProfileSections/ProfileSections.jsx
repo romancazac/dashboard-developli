@@ -6,8 +6,8 @@ import { ProfileItemIcon } from '../ProfileItemIcon/ProfileItemIcon'
 import { AcademicCapIcon, BriefcaseIcon, LanguageIcon } from '@heroicons/react/20/solid'
 import { ProfileItem } from '../ui/ProfileItem'
 export const ProfileSections = ({ aside }) => {
-   const { profileData } = useSelector(state => state.profile)
-
+   const { user } = useSelector(state => state.auth)
+   
 
    return (
       <>
@@ -15,15 +15,15 @@ export const ProfileSections = ({ aside }) => {
 
          <ProfileSection
             title='Experience'
-            addItem={profileData[2]?.experience?.length > 0 ? false : true}
+            addItem={user?.profileData[2]?.data.length > 0 ? false : true}
             editArray={'experience'}
-            data={profileData[2]?.experience}
+            data={ user?.profileData[2]}
             aside={aside}
             id={2}
          >
 
             {
-               profileData[2]?.experience?.map((exp) =>
+              user?.profileData[2]?.data?.map((exp) =>
 
                   <ProfileItemIcon
                      key={exp.id}
@@ -48,13 +48,13 @@ export const ProfileSections = ({ aside }) => {
             title='Education'
             editArray={'education'}
             id={3}
-            data={profileData[3]?.education}
-            addItem={profileData[3]?.education?.length > 0 ? false : true}
+            data={user?.profileData[3]}
+            addItem={user?.profileData[3]?.data.length > 0 ? false : true}
          >
 
             {
 
-               profileData[3]?.education?.map((exp) =>
+               user?.profileData[3]?.data?.map((exp) =>
 
                   <ProfileItemIcon
                      key={exp.id}
@@ -77,13 +77,13 @@ export const ProfileSections = ({ aside }) => {
          <ProfileSection
             aside={aside}
             title='Languages'
-            addItem={profileData[4]?.languages.length > 0 ? false : true}
+            addItem={ user?.profileData[4]?.data.length > 0 ? false : true}
             editArray={'languages'}
-            data={profileData[4]?.languages}
+            data={ user?.profileData[4]?.data}
             id={4}
          >
             {
-               profileData[4]?.languages?.map((exp) =>
+              user?.profileData[4]?.data?.map((exp) =>
 
                   <ProfileItemIcon
                      key={exp.id}
@@ -101,25 +101,26 @@ export const ProfileSections = ({ aside }) => {
                )
             }
 
-         
+
          </ProfileSection>
-         
+
          <ProfileSection
             title='Skils'
             editArray={'skilss'}
-            data={profileData[5]?.skilss[0]}
+            data={  user?.profileData[5]}
             aside={aside}
             id={5}
          >
-            {profileData[5]?.skilss?.map((info) =>
-               Object.entries(info).map(([label, text]) =>
-                  <ProfileItem label={label} text={text} aside={aside} key={label}/>
+            {
+             user?.profileData.length > 0 &&
+               Object.entries(user?.profileData[5]).map(([label, text]) =>
+                  <ProfileItem label={label} text={text} aside={aside} key={label} />
 
                )
-            )}
+            }
 
 
-         
+
          </ProfileSection>
       </>
    )

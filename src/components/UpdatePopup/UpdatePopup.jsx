@@ -9,7 +9,8 @@ import {
 import ButtonIcon from "../ui/ButtonIcon";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAddItem, fetchProfileInfo } from "../../redux/slices/profileSlice";
+import { fetchAddItem } from "../../redux/slices/profileSlice";
+import { fetchProfileInfo } from "../../redux/slices/authSlice";
 
 
 export default function UpdatePopup({ open, handleOpen }) {
@@ -37,6 +38,7 @@ export default function UpdatePopup({ open, handleOpen }) {
             {arr?.map((t, i) => (
                <div className="flex gap-2 items-center mb-4 group" key={i}>
                   <span className={`${t.icon} text-green w-3`}></span>
+
                   <p className="text-gray group-hover:text-green group-hover:underline">
                      {t.name}
                   </p>
@@ -67,18 +69,22 @@ export default function UpdatePopup({ open, handleOpen }) {
                {
                   Object.entries(updates).map(([label, text]) =>
                      <div className='flex mb-5 last:mb-0'>
-                        <span className='block text-gray max-w-[150px] w-full first-letter:uppercase'>{label}</span>
                         {
-                           label === "about" ?
+                           label !== "id" &&
+                           <span className='block text-gray max-w-[150px] w-full first-letter:uppercase'>{label}</span>
+                        }
+
+                        {
+                           label !== "id" && (label === "about" ?
                               <textarea
                                  value={updates[label]}
-                                 onChange={(e) => setUpdates({ ...updates, [label]: e.target.value })} placeholder={text} className="w-full" /> :
+                                 onChange={(e) => setUpdates({ ...updates, [label]: e.target.value })} placeholder={text} className="w-full border px-1" /> :
                               typeof text === 'object' ?
                                  renderArr(text, label)
                                  :
                                  <input
                                     value={updates[label]}
-                                    onChange={(e) => setUpdates({ ...updates, [label]: e.target.value })} className='text-blackColor w-full outline-[green]' />
+                                    onChange={(e) => setUpdates({ ...updates, [label]: e.target.value })} className='text-blackColor w-full outline-[green] border px-1' />)
                         }
                      </div>
                   )

@@ -1,8 +1,10 @@
 import React from 'react'
 import ButtonIcon from '../ui/ButtonIcon'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchDeleteItem, fetchProfileInfo, setForUdateData } from '../../redux/slices/profileSlice'
+import { fetchDeleteItem,  setForUdateData } from '../../redux/slices/profileSlice'
 import { setPopUp } from '../../redux/slices/jobsSlice'
+import { fetchProfileInfo } from '../../redux/slices/authSlice'
+
 
 
 export const ProfileItemIcon = ({ icon, name, position, term, employment, id, idItem, editArray, aside }) => {
@@ -24,6 +26,8 @@ export const ProfileItemIcon = ({ icon, name, position, term, employment, id, id
       }
       dispatch(fetchDeleteItem({ section: popUp, id: forUpdateData[0], itemId: id }))
       dispatch(fetchProfileInfo())
+      
+      
    }
 
 

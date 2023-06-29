@@ -18,7 +18,7 @@ import l5 from '../assets/img/cadidats/05.png'
 export const Dashboard = () => {
   const dispatch = useDispatch();
   const {jobsData} = useSelector(state => state.jobs)
-  const {profileData} = useSelector(state => state.profile)
+  const {user} = useSelector(state => state.auth)
   const statisticData = [
     {
       number: 56,
@@ -41,7 +41,7 @@ export const Dashboard = () => {
 
 
   ]
-  const preferenceData = profileData[6]?.preference[0];
+  const preferenceData =   user?.profileData[6] ;
 
 
   const onRecommend = () => {
