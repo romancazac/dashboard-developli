@@ -15,6 +15,7 @@ function App() {
   const dispatch = useDispatch()
   const { totalCount, popUp, filter, sort, jobSearch } = useSelector(state => state.jobs);
   const { user } = useSelector(state => state.auth)
+  const { asideNavOpen,asideProfileOpen } = useSelector(state => state.ui)
 
   // for saved job
   const getSavedFromLs = () => {
@@ -57,7 +58,7 @@ function App() {
 
 
   return (
-    <>
+    <div className={`${asideNavOpen || asideProfileOpen ? 'overflow-hidden h-[100vh]' : ''}`}>
       <RouterProvider router={routes} />
       {(popUp === 'experience' || popUp === 'education' || popUp === 'languages') && <UpdatePopupAdd open={popUp === 'experience' || popUp === 'education' || popUp === 'languages'} handleOpen={() => dispatch(setPopUp(''))} />}
       {
@@ -67,7 +68,7 @@ function App() {
       <DetailsPopUp open={popUp === 'information'} handleOpen={() => dispatch(setPopUp(''))} className='overflow-auto' />
       <TestPopUp open={popUp === 'test'} handleOpen={() => dispatch(setPopUp(''))} />
 
-    </>
+    </div>
   )
 }
 

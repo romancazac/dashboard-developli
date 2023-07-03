@@ -10,7 +10,7 @@ export const JobLayout = () => {
       <>
 
          <Aside />
-         <div className='ml-[260px] px-6'>
+         <div className='ml-[260px] lg:ml-0 px-6 lg:px-2'>
             <Header />
             <div className="flex gap-10">
                <div className="flex-auto pb-5">

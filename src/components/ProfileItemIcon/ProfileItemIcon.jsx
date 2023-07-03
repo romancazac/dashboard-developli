@@ -14,9 +14,9 @@ export const ProfileItemIcon = ({ icon, name, position, term, employment, id, id
    const { forUpdateData } = useSelector(state => state.profile)
 
 
-
    const dataForUpdate = () => {
-      dispatch(setForUdateData([id, { "redact": true }, { "name": name, "agency": position, "employment": employment, "perioad": term, "id": idItem }]))
+      dispatch(setForUdateData([id, { "redact": true }, { "name": name, "agency": position, "employment": employment, "perioad": term,  "id":idItem}]))
+
    }
    const onDelete = () => {
       if (!Boolean(popUp)) {
@@ -33,7 +33,7 @@ export const ProfileItemIcon = ({ icon, name, position, term, employment, id, id
 
    const onEditeItem = () => {
       if (!Boolean(popUp)) {
-         dispatch(setPopUp(editArray))
+       dispatch(setPopUp(editArray))
       }
 
       dataForUpdate()

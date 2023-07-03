@@ -4,6 +4,7 @@ import auth from './slices/authSlice'
 import profile from './slices/profileSlice'
 import accordion from './slices/accordionSlice'
 import alerts from './slices/alertsSlice'
+import ui from './slices/uiSlice'
 
 export default configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export default configureStore({
    auth,
    profile,
    accordion,
-   alerts
+   alerts,
+   ui
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

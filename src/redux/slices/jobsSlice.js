@@ -40,6 +40,9 @@ export const jobsSlice = createSlice({
 
    initialState,
    reducers: {
+      setResetFilter(state) {
+         state.filter = []
+      },
       setTotalCount(state) {
          state.totalCount += 5
       },
@@ -110,7 +113,7 @@ export const jobsSlice = createSlice({
    }
 })
 
-export const { setSingleJob,setSavedJobsFromLs,setSavedJob, setTotalCount, setSearchJob, setSearchRes, setJobs, setFilters, setSort,setPopUp } = jobsSlice.actions;
+export const {setResetFilter, setSingleJob,setSavedJobsFromLs,setSavedJob, setTotalCount, setSearchJob, setSearchRes, setJobs, setFilters, setSort,setPopUp } = jobsSlice.actions;
 
 export const selectJobs = (state) => state.jobs.jobsData
 

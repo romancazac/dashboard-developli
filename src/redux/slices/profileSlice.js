@@ -69,17 +69,18 @@ export const fetchPostItem= createAsyncThunk(
 export const fetchUpdateItem = createAsyncThunk(
   'profile/fetchUpdateItem',
   async (params, { getState }) => {
-    const { updates, section, id, objId } = params;
+    const { updates, id } = params;
 
     try {
       const { user } = getState().auth;
 
       const updatedProfileData = user.profileData.map((item, index) => {
+      
         if (index === id) {
           return {
             ...item,
             data: item.data.map((dataItem) => {
-              if (dataItem.id === objId) {
+              if (dataItem.id === id) {
                 return updates;
               }
               return dataItem;
@@ -88,7 +89,8 @@ export const fetchUpdateItem = createAsyncThunk(
         }
         return item;
       });
-
+      //  console.log('slice' ,updates, objId)
+        
       const obj = {
         ...user,
         profileData: updatedProfileData
@@ -141,11 +143,11 @@ export const fetchDeleteItem = createAsyncThunk(
   }
 );
 const initialState = {
-  profileData: [],
+
   forUpdateData: [],
   status: '',
   availabile: true,
-
+  openAside:false
 }
 
 export const profileSlice = createSlice({
@@ -162,10 +164,13 @@ export const profileSlice = createSlice({
     },
     setAvailabil(state, action) {
       state.availabile = action.payload;
+    },
+    setOpenAside(state, action) {
+      state.openAside = action.payload
     }
 
   }
 })
 
-export const { setForUdateData, setAvailabil, setProfileData } = profileSlice.actions;
+export const { setForUdateData, setAvailabil, setProfileData,setOpenAside } = profileSlice.actions;
 export default profileSlice.reducer

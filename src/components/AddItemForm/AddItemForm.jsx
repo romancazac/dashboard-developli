@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import InputIcon from '../ui/InputIcon'
 import { BriefcaseIcon, BuildingOffice2Icon, CalendarDaysIcon, MapPinIcon } from '@heroicons/react/20/solid'
 import { Formik, Form, Field } from 'formik';
@@ -16,6 +16,10 @@ export const AddItemForm = ({ name }) => {
    const [perioad, setPerioad] = useState({ from: '', to: '' });
    const { popUp } = useSelector(state => state.jobs)
    const { forUpdateData } = useSelector(state => state.profile)
+   const [rerender, setRerender] = useState(false);
+
+
+ 
 
 
    const CreateSchema = Yup.object().shape({
@@ -31,15 +35,17 @@ export const AddItemForm = ({ name }) => {
    const onAddItems = async (values, actions) => {
 
       if (forUpdateData[1].redact) {
-         const id = forUpdateData[2].id
+         const id = forUpdateData[0]
          const updates = { ...values, perioad: perioad.to + '--' + perioad.from, id }
-         await disptach(fetchUpdateItem({ updates, section: popUp, id: forUpdateData[0], objId: forUpdateData[2].id }))
+
+         await disptach(fetchUpdateItem({ updates, id  }))
          disptach(fetchProfileInfo())
-         actions.resetForm()
+
+         // actions.resetForm()
 
       } else {
          const updates = { ...values, perioad: perioad.to + '--' + perioad.from, id: uuid() }
-         await disptach(fetchPostItem({ updates, section: popUp, id: forUpdateData[0] }))
+         await disptach(fetchPostItem({ updates, section: popUp, id:forUpdateData[0]}))
          disptach(fetchProfileInfo())
    
          actions.resetForm()
@@ -47,6 +53,12 @@ export const AddItemForm = ({ name }) => {
 
 
    }
+   useEffect(() => {
+      if (forUpdateData[1]?.redact) {
+        setRerender(!rerender); // Modifică valoarea stării pentru a declanșa rerenderul
+      }
+    }, [forUpdateData]); 
+  
    return (
 
       <Formik
@@ -60,6 +72,7 @@ export const AddItemForm = ({ name }) => {
          }}
          validationSchema={CreateSchema}
          onSubmit={onAddItems}
+         key={rerender}
       >
          {({ values, handleChange, touched, errors }) => (
             <Form>

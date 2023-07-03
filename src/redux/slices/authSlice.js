@@ -153,7 +153,7 @@ const userSlice = createSlice({
 
     },
     [fetchProfileInfo.fulfilled]: (state, action) => {
-      console.log(action.payload)
+
       state.user.profileData = action.payload.profileData;
       state.userstatus = 'succes';
     },

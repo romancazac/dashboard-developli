@@ -48,7 +48,7 @@
      @apply before:w-[16px] before:h-[16px]  before:border-[6px] before:border-[#47D18C] before:rounded-[50%] before:block before:absolute before:left-[0] before:top-[50%] before:translate-y-[-50%] pl-6
    }
    .btn-block {
-     @apply inline-flex justify-start items-center px-8 h-10 rounded-xl font-semibold  text-white  ease-in-out duration-300 hover:bg-green
+     @apply inline-flex justify-start items-center px-8 h-10 rounded-xl font-semibold  text-white  ease-in-out duration-300 hover:bg-green md:px-4 md:py-3
    }
    .btn-block_gray {
     @apply  bg-[#3D425A] 
@@ -71,6 +71,7 @@
    }
 
  }
+ /* card animation  */
  .card-job-enter {
   opacity: 0;
 }
@@ -88,7 +89,28 @@
   opacity: 0;
   transition: opacity 300ms ease-in;
 }
- 
+/* aside profile  */
+.profile-aside-enter {
+  opacity: 0;
+  transform: translate(100%, 0);
+}
+
+.profile-aside-enter-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: all 200ms ease-in;
+}
+
+.profile-aside-exit {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.profile-aside-exit-active {
+  opacity: 0;
+  transform: translate(100%, 0);
+  transition: all 200ms ease-out;
+}
  @font-face {
    font-family: 'icomoon';
    src:  url('../public/fonts/icomoon.eot?sz63un');

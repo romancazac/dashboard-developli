@@ -45,7 +45,7 @@ const CardJob = ({ date, name, author, avatar, country, experience, level, requi
     <TransitionGroup component={Fragment}>
 
       <CSSTransition classNames="card-job" timeout={300} key={id} >
-        <div className={`flex flex-col  bg-white rounded-xl p-5  ${recommended ? 'flex-[0_1_calc(50%-10px)] ' : 'flex-[0_1_100%] mb-5'}`}>
+        <div className={`flex flex-col  bg-white rounded-xl p-5  ${recommended ? 'flex-[0_1_calc(50%-10px)] lg:flex-[0_1_100%] ' : 'flex-[0_1_100%] mb-5'}`}>
           <div className="flex justify-between items-center mb-3">
             <span className="w-[55px] h-[55px] bg-[#F5F7FF] flex justify-center items-center overflow-hidden rounded-full">
               <img src={avatar} alt="" />
@@ -63,7 +63,7 @@ const CardJob = ({ date, name, author, avatar, country, experience, level, requi
           <h3 className="text-blackColor font-semibold mb-5">{name}</h3>
           {
             !recommended &&
-            <div className="flex mb-4 gap-5">
+            <div className="flex mb-4 gap-5 sm:hidden">
               <span className="text-xs text-[#1F8FFF] font-bold">Shopify</span>
               <span className="flex items-center gap-2 text-xs text-gray font-bold">
                 <MapPinIcon className="w-4" />

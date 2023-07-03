@@ -13,6 +13,7 @@ import { ProfileLayout } from "./layouts/ProfileLayout"
 import { Auth } from "./pages/Auth/Auth"
 import { Registration } from "./pages/Auth/Registration"
 import { LogIn } from "./pages/Auth/LogIn"
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute"
 
 export const routes = createBrowserRouter([
    {
@@ -31,7 +32,7 @@ export const routes = createBrowserRouter([
    },
    {
       path:"/",
-      element:<MainLayout/>,
+      element:<PrivateRoute><MainLayout/></PrivateRoute> ,
       children:[
          {
             path:"dashboard",
@@ -42,7 +43,7 @@ export const routes = createBrowserRouter([
    },
    {
       path:"/",
-      element:<JobLayout/>,
+      element:<PrivateRoute><JobLayout/></PrivateRoute>,
       children:[
     
          {
@@ -61,7 +62,7 @@ export const routes = createBrowserRouter([
    },
    {
       path:"/",
-      element:<FullPageLayout/>,
+      element:<PrivateRoute><FullPageLayout/></PrivateRoute>,
       children:[
          {
             path:"messages",
@@ -73,7 +74,7 @@ export const routes = createBrowserRouter([
    {
 
       path:"/",
-      element:<ProfileLayout/>,
+      element:<PrivateRoute><ProfileLayout/></PrivateRoute>,
       children:[
          {
             path:"resume",

@@ -52,7 +52,7 @@ export const Dashboard = () => {
   return (
     <>
     
-      <div className="flex mx-[-10px] mb-11 ">
+      <div className="flex flex-wrap   mx-[-10px] mb-11 md:mb-3 ">
         {statisticData.map((card,i) => <CardStatistic {...card} key={`${card.number}${i}`} />)}
       </div>
       <Banner/>

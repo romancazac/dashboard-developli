@@ -1,23 +1,42 @@
-import { useState } from "react";
+
 import { Card, List, Accordion, AccordionHeader, AccordionBody, } from "@material-tailwind/react";
 import { UserCircleIcon, Cog6ToothIcon, } from "@heroicons/react/24/solid";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 import logo from '../../assets/img/logo.png'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setAccordion } from "../../redux/slices/accordionSlice";
 import { logout } from "../../redux/slices/authSlice";
+import { XMarkIcon } from "@heroicons/react/20/solid";
+import { setOpenNav } from "../../redux/slices/uiSlice";
+
+
 
 
 export const Aside = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { accordion } = useSelector(state => state.accordion)
-  
+  const { asideNavOpen } = useSelector(state => state.ui)
+
+
  
+  
+
+  const onLogOut = async () => {
+    await dispatch(logout());
+    navigate('/')
+  }
+
 
   return (
-    <Card className="fixed top-0 left-0 h-full w-full max-w-[260px] overflow-y-auto overflow-x-hidden  p-4  rounded-none shadow-none  ">
+    
+    <Card 
+    className={`fixed z-10 top-0 left-0 h-full w-full max-w-[260px] overflow-y-auto overflow-x-hidden  p-4  rounded-none shadow-none ease-in-out duration-200 lg:left-[-100%] ${asideNavOpen ? 'lg:left-0' : ''}`}>
+      <button className="absolute right-4 w-6 hidden lg:block" onClick={() => dispatch(setOpenNav(!asideNavOpen))}><XMarkIcon/></button>
+      
       <a href="/" className="mb-10 p-4">
         <img src={logo} alt="" />
       </a>
@@ -52,7 +71,7 @@ export const Aside = () => {
             </span>
           </AccordionHeader>
 
-          <AccordionBody  className="flex flex-col gap-3 items-start pl-[49px]">
+          <AccordionBody className="flex flex-col gap-3 items-start pl-[49px]">
 
             <NavLink to='search-job' className='font-medium [&.active]:text-blueColor'>
               Search Job
@@ -150,12 +169,13 @@ export const Aside = () => {
       </List>
 
       <button className="flex items-center gap-3 px-5 py-3 rounded-xl text-[#F05817] font-medium  hover:text-green" >
-        <button onClick={() => dispatch(logout())} className="flex items-center gap-3 flex-auto">
+        <button onClick={onLogOut} className="flex items-center gap-3 flex-auto">
           <span className="icon-logout" />
           Logout
         </button>
       </button>
     </Card>
+  
   );
 }
 
