@@ -58,7 +58,7 @@ function App() {
 
 
   return (
-    <div className={`${asideNavOpen || asideProfileOpen ? 'overflow-hidden h-[100vh]' : ''}`}>
+    <div className={`xl:overflow-hidden ${asideNavOpen || asideProfileOpen ? 'h-[100vh] before:bg-black before:opacity-20 before:absolute before:inset-0 before:z-[5] ' : ''}`}>
       <RouterProvider router={routes} />
       {(popUp === 'experience' || popUp === 'education' || popUp === 'languages') && <UpdatePopupAdd open={popUp === 'experience' || popUp === 'education' || popUp === 'languages'} handleOpen={() => dispatch(setPopUp(''))} />}
       {

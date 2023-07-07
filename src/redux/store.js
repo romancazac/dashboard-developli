@@ -5,6 +5,7 @@ import profile from './slices/profileSlice'
 import accordion from './slices/accordionSlice'
 import alerts from './slices/alertsSlice'
 import ui from './slices/uiSlice'
+import chat from './slices/chatSlice'
 
 export default configureStore({
   reducer: {
@@ -13,7 +14,8 @@ export default configureStore({
    profile,
    accordion,
    alerts,
-   ui
+   ui,
+   chat
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

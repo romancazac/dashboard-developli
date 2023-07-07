@@ -1,12 +1,11 @@
 import React from 'react'
-import { ProfileSection } from '../../components/ProfileSection/ProfileSection'
+
+import { ProfileSections } from '../../components/ProfileSections/ProfileSections'
 
 export const Settings = () => {
   return (
     <>
-      <ProfileSection title='Personal information'>
-         
-      </ProfileSection>
+      <ProfileSections/>
     
     </>
   )

@@ -6,7 +6,7 @@ function Banner() {
             <div className="w-[55%]">
                 <h2 className='text-xl font-bold mb-5 text-blackColor'>Get your personal growth plan</h2>
                 <p className='mb-7 font-semibold'>Here can be any information or stats</p>
-                <a href="#" className="btn-block btn-block_gray ">Read more</a>
+                <a href="https://developli.vercel.app/" target='_blank' className="btn-block btn-block_gray ">Read more</a>
             </div>
             <img src={cactus} alt="catus"  className='absolute bottom-0 right-0 w-[45%] h-[108%] object-cover object-bottom xl:object-contain'/>
         </div>

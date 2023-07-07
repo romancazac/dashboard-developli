@@ -14,6 +14,9 @@ import { Auth } from "./pages/Auth/Auth"
 import { Registration } from "./pages/Auth/Registration"
 import { LogIn } from "./pages/Auth/LogIn"
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute"
+import { Interviews } from "./pages/Interviews"
+import { Company } from "./pages/Company"
+import { Help } from "./pages/Help"
 
 export const routes = createBrowserRouter([
    {
@@ -67,6 +70,10 @@ export const routes = createBrowserRouter([
          {
             path:"messages",
             element:<Messages/>
+         },
+         {
+            path:"messages/:idn",
+            element:<Messages/>
          }
        
       ]
@@ -83,7 +90,19 @@ export const routes = createBrowserRouter([
          {
             path:"settings",
             element:<Settings/>
-         }
+         },
+         {
+            path:"interviews",
+            element:<Interviews/>
+         },
+         {
+            path:"company",
+            element:<Company/>
+         },
+         {
+            path:"help",
+            element:<Help/>
+         },
       ]
    }
 

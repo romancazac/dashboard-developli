@@ -9,7 +9,7 @@ export const ProfileLayout = () => {
   return (
     <>
       <Aside />
-      <div className='ml-[260px] px-6'>
+      <div className='page__layout'>
         <Header />
         <ProfileTop/>
         <div className="flex gap-10">

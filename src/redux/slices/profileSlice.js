@@ -169,6 +169,30 @@ export const profileSlice = createSlice({
       state.openAside = action.payload
     }
 
+  },  
+  
+  extraReducers: {
+    [fetchUpdateItem.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchUpdateItem.fulfilled]: (state) => {
+      state.status = "succes";
+    },
+    [fetchUpdateItem.rejected]: (state) => {
+      state.status = "error";
+    },
+
+    [fetchAddItem.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchAddItem.fulfilled]: (state) => {
+      state.status = "succes";
+    },
+    [fetchAddItem.rejected]: (state) => {
+      state.status = "error";
+    },
+    
+  
   }
 })
 

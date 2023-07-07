@@ -15,7 +15,7 @@ export const ProfileSections = ({ aside }) => {
 
          <ProfileSection
             title='Experience'
-            addItem={user?.profileData[2]?.data.length > 0 ? false : true}
+            addItem={user?.profileData[2]?.data?.length > 0 ? false : true}
             editArray={'experience'}
             data={ user?.profileData[2]}
             aside={aside}
@@ -49,7 +49,7 @@ export const ProfileSections = ({ aside }) => {
             editArray={'education'}
             id={3}
             data={user?.profileData[3]}
-            addItem={user?.profileData[3]?.data.length > 0 ? false : true}
+            addItem={user?.profileData[3]?.data?.length > 0 ? false : true}
          >
 
             {
@@ -77,7 +77,7 @@ export const ProfileSections = ({ aside }) => {
          <ProfileSection
             aside={aside}
             title='Languages'
-            addItem={ user?.profileData[4]?.data.length > 0 ? false : true}
+            addItem={ user?.profileData[4]?.data?.length > 0 ? false : true}
             editArray={'languages'}
             data={ user?.profileData[4]?.data}
             id={4}
@@ -112,8 +112,8 @@ export const ProfileSections = ({ aside }) => {
             id={5}
          >
             {
-             user?.profileData.length > 0 &&
-               Object.entries(user?.profileData[5]).map(([label, text]) =>
+             user?.profileData?.length > 0 &&
+               Object.entries(user?.profileData[5])?.map(([label, text]) =>
                   <ProfileItem label={label} text={text} aside={aside} key={label} />
 
                )

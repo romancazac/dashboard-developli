@@ -20,7 +20,7 @@ export const Alert = () => {
             {
                state => (
                   <div 
-                  className='fixed bottom-3 right-3 btn-block btn-block_green'
+                  className='fixed bottom-3 right-3 btn-block btn-block_green z-[10000]'
                   style={{
                      ...defaultStyle,
                      ...transitionStyles[state]

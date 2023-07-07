@@ -23,20 +23,20 @@ export const ProfileTop = () => {
   
    return (
 
-      <div className="flex justify-between gap-2 mb-7">
-         <div className="">
+      <div className="flex justify-between flex-wrap gap-2 mb-7">
+         <div >
             <h3 className="text-2xl font-bold">My resume</h3>
             <p className="text-gray text-sm">Yor personal data</p>
          </div>
          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-3">
-               <span className='text-gray'>Status</span>
+            {/* <div className="flex items-center gap-3">
+               <span className='text-gray sm:hidden'>Status</span>
                <Select data={dataVisible} onDispatch={(s) => dispatch(setAvailabil(s.label))} className={'bg-white w-[144px] rounded-xl h-[40px] font-bold text-blackColor'} />
             </div>
-            <button className="btn-block btn-block_gray gap-2">
+            <button className="btn-block btn-block_gray gap-2 ">
                <EyeIcon className='w-4' />
                Preview
-            </button>
+            </button> */}
          </div>
       </div>
    )

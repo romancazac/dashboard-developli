@@ -10,6 +10,7 @@ import { setAccordion } from "../../redux/slices/accordionSlice";
 import { logout } from "../../redux/slices/authSlice";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { setOpenNav } from "../../redux/slices/uiSlice";
+import { useEffect, useRef } from "react";
 
 
 
@@ -25,16 +26,30 @@ export const Aside = () => {
  
   
 
+ 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (asideNavOpen && !event.target.closest('.aside') && !event.target.closest('.header__burger') ) {
+        dispatch(setOpenNav(false));
+      }
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [asideNavOpen,dispatch]);
+
+
   const onLogOut = async () => {
     await dispatch(logout());
     navigate('/')
   }
-
-
   return (
     
-    <Card 
-    className={`fixed z-10 top-0 left-0 h-full w-full max-w-[260px] overflow-y-auto overflow-x-hidden  p-4  rounded-none shadow-none ease-in-out duration-200 lg:left-[-100%] ${asideNavOpen ? 'lg:left-0' : ''}`}>
+    <Card
+      className={`aside fixed z-10 top-0 left-0 h-full w-full max-w-[260px] overflow-y-auto overflow-x-hidden  p-4  rounded-none shadow-none ease-in-out duration-200 lg:left-[-100%] ${asideNavOpen ? 'lg:left-0' : ''}`}>
       <button className="absolute right-4 w-6 hidden lg:block" onClick={() => dispatch(setOpenNav(!asideNavOpen))}><XMarkIcon/></button>
       
       <a href="/" className="mb-10 p-4">
@@ -130,7 +145,7 @@ export const Aside = () => {
 
           </AccordionBody>
         </Accordion>
-        <NavLink to='my-interviews'
+        <NavLink to='interviews'
           className="flex 
           items-center gap-3 px-5 py-3 rounded-xl 
         [&.active]:text-green [&.active]:bg-green [&.active]:text-white"

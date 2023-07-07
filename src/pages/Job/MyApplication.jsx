@@ -4,7 +4,7 @@ export const MyApplication = () => {
   return (
 
     <div className='flex flex-wrap'>
-      <CardJob />
+      {/* <CardJob /> */}
    
    
     </div>

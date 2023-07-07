@@ -4,6 +4,7 @@ import {
    DialogHeader,
    DialogBody,
    DialogFooter,
+   Spinner,
 
 } from "@material-tailwind/react";
 import ButtonIcon from "../ui/ButtonIcon";
@@ -17,7 +18,7 @@ export default function UpdatePopup({ open, handleOpen }) {
 
    const disptach = useDispatch();
    const { popUp } = useSelector(state => state.jobs)
-   const { forUpdateData } = useSelector(state => state.profile)
+   const { forUpdateData, status } = useSelector(state => state.profile)
 
 
    const [updates, setUpdates] = useState({});
@@ -61,14 +62,14 @@ export default function UpdatePopup({ open, handleOpen }) {
    };
    return (
       <Fragment >
-         <Dialog size="xl" open={open} handler={handleOpen} className="max-w-[700px!important] min-w-[auto]  overflow-auto  md:min-w-[90%] p-5">
+         <Dialog size="xl" open={open} handler={handleOpen} className="max-w-[700px!important] min-w-[auto]  overflow-auto md:max-h-[99%]  md:min-w-[90%] p-5">
             <DialogHeader className="flex items-start justify-between gap-1 p-0 mb-3">
                <ButtonIcon className={"w-8 h-8 ml-auto"} onClick={handleOpen}><XMarkIcon className="w-4" /></ButtonIcon>
             </DialogHeader>
-            <DialogBody className="overflow-y-auto p-0 md:h-96">
+            <DialogBody className="overflow-y-auto p-0 ">
                {
                   Object.entries(updates).map(([label, text]) =>
-                     <div className='flex mb-5 last:mb-0'>
+                     <div className='flex md:flex-wrap mb-5 last:mb-0'>
                         {
                            label !== "id" &&
                            <span className='block text-gray max-w-[150px] w-full first-letter:uppercase'>{label}</span>
@@ -93,7 +94,11 @@ export default function UpdatePopup({ open, handleOpen }) {
 
 
             <DialogFooter className="justify-start">
-               <button onClick={onUpdates} className='bg-green text-white px-6 py-3 font-semibold flex items-center gap-2 rounded-2xl hover:scale-105 ease-in-out duration-75 text-base'><span className='icon-file-text2'></span>Update</button>
+               <button onClick={onUpdates} className='flex gap-2 btn-block btn-block_green'>
+                  Update
+                  {status === "loading" ? <Spinner className='w-4 h-4 text-white' /> : ''}
+                  
+               </button>
 
             </DialogFooter>
 

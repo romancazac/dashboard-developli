@@ -77,6 +77,7 @@ export const Resume = () => {
           {
             selectedFiles.map((file) =>
               <File name={file.name} size={file.size} key={file.name} onClick={() => onRemoveFile(file.name)} />
+  
 
             )
           }

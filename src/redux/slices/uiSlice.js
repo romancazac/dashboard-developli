@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
    asideNavOpen: false,
    asideProfileOpen: false,
-   asideFilter: false
-
+   asideFilter: false,
+   usersChat: false,
 }
 
 export const uiSlice = createSlice({
@@ -19,10 +19,13 @@ export const uiSlice = createSlice({
       },
       setOpenFilter(state, action) {
          state.asideFilter = action.payload
+      },
+      setOpenUsers(state, action) {
+         state.usersChat = action.payload
       }
    }
 
 })
 
-export const { setOpenNav, setOpenProfile, setOpenFilter } = uiSlice.actions;
+export const { setOpenNav, setOpenProfile, setOpenFilter,setOpenUsers } = uiSlice.actions;
 export default uiSlice.reducer

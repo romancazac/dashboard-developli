@@ -57,7 +57,7 @@ export default function VideoCvPopup({ open, handleOpen }) {
                <h3 className="first-letter:uppercase">Record your virtual CV</h3>
                <ButtonIcon className={"w-8 h-8 ml-auto"} onClick={handleOpen}><XMarkIcon className="w-4" /></ButtonIcon>
             </DialogHeader>
-            <DialogBody className="overflow-y-auto p-0 md:h-96">
+            <DialogBody className="overflow-y-auto p-0 ">
 
 
                <Webcam ref={webcamRef} className="mb-5 rounded-xl" />

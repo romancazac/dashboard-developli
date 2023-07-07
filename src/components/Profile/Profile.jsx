@@ -7,7 +7,7 @@ import avatar from '../../assets/img/avatar.png'
 import { ProfileSections } from '../ProfileSections/ProfileSections'
 import { Link } from 'react-router-dom'
 
-import { useStyleMediaQuery } from '../../hooks/useStyleMediaQuery'
+
 
 
 export const Profile = () => {
@@ -21,7 +21,7 @@ export const Profile = () => {
 
     <div
       className={`max-w-[368px] min-w-[300px] w-full h-full px-5 py-[30px] bg-white rounded-xl sticky top-0 xl:fixed xl:right-0 xl:top-20 xl:overflow-y-auto
-      xl:h-[calc(100%-80px)] xl:ease-in-out xl:duration-100    ${asideProfileOpen ? 'xl:translate-x-0' : 'xl:translate-x-full'}`}
+      xl:h-[calc(100%-80px)] xl:ease-in-out xl:duration-100  z-[5]  ${asideProfileOpen ? 'xl:translate-x-0' : 'xl:translate-x-full'}`}
      
     >
       <div className='border-b pb-3 mb-3'>
@@ -48,7 +48,7 @@ export const Profile = () => {
           <span className='font-bold'>Availability</span>
 
         </div>
-        <span className="btn-block btn-block_green"><span>{user?.profileData[6].available ? `Available For Work` : 'Not Available For Work'}</span></span>
+        <span className="btn-block btn-block_green"><span>{user?.profileData[6]?.available ? `Available For Work` : 'Not Available For Work'}</span></span>
 
 
       </div>

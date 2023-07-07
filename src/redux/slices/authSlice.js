@@ -63,9 +63,10 @@ export const fetchRegistration = createAsyncThunk(
 
 export const fetchProfileInfo = createAsyncThunk(
   'profile/fetchDataStatus',
-  async () => {
+  async (_ , {getState}) => {
     try {
-      const response = await axios.get(`${BASE_URL}/users/1`)
+      const {user} = getState().auth
+      const response = await axios.get(`${BASE_URL}/users/${user.id}`)
 
       return response.data
     } catch (error) {

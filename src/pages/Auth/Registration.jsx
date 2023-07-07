@@ -11,25 +11,19 @@ import { useAppServices } from '../../services/appServices';
 export const Registration = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { uploadAvatar,postProfileData } = useAppServices()
+  const { uploadAvatar, postProfileData } = useAppServices()
   const { error } = useSelector(state => state.auth);
   const profileData = [
-    {
-      "personalInfo": [
         {
+          "id": 0,
           "fullName": "",
           "speciality": "",
           "date of birth": "",
           "gender": "",
           "about": ""
-        }
-      ],
-      "id": 0
-    },
-    {
-      "id": 1,
-      "contacts": [
+        },
         {
+          "id": 1,
           "phone": "",
           "email": "",
           "links": [
@@ -49,65 +43,45 @@ export const Registration = () => {
               "icon": "icon-facebook"
             }
           ]
-        }
-      ]
-    },
-    {
-      "experience": [
+        },
         {
-          "position": "",
-          "employment": "",
-          "agency": "",
-          "location": "",
-          "perioad": "",
-          "id": ""
-        }
-      ],
-      "id": 2
-    },
-    {
-      "education": [
+          "id": 2,
+          "data": [
+            {
+              "position": "",
+              "employment": "",
+              "agency": "",
+              "location": "",
+              "perioad": "",
+              "id": ""
+            }
+          ]
+        },
         {
-          "position": "",
-          "employment": "",
-          "agency": "",
-          "location": "",
-          "perioad": "",
-
-        }
-      ],
-      "id": 3
-    },
-    {
-      "languages": [
+          "id": 3,
+          "data": [
+            {
+              
+            }
+          ]
+        },
         {
-          "position": "",
-          "employment": "",
-          "agency": "",
-          "location": "",
-          "perioad": "--",
-
-        }
-      ],
-      "id": 4
-    },
-    {
-      "skilss": [
+          "id": 4,
+          "data": [
+            
+          ]
+        },
         {
+          "id": 5,
           "skill": ""
-        }
-      ],
-      "id": 5
-    },
-    {
-      "preference": [
+        },
         {
+          "id": 6,
           "category": "",
-          "available": true
+          "available": ""
         }
-      ],
-      "id": 6
-    }
+      
+    
   ]
 
   const RegisterSchema = Yup.object().shape({
@@ -120,12 +94,12 @@ export const Registration = () => {
 
   const onRegitration = async (values) => {
 
-  
+
     await dispatch(fetchRegistration(values));
 
     navigate('/dashboard')
 
-    
+
 
   }
 
@@ -202,7 +176,7 @@ export const Registration = () => {
         </div>
         <div className='mb-5'>
           <label className='text-blackColor font-bold mb-1 flex gap-2 text-sm'>Avatar
-         
+
           </label>
           <div className='flex gap-3 text-green p-3 bg-[#F6F8F9] rounded-xl'>
             <PhotoIcon className='w-5' />

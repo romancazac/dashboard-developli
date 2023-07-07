@@ -9,7 +9,7 @@ export const FullPageLayout = () => {
     <>
     
       <Aside />
-      <div className='ml-[260px] px-6 h-[100vh] overflow-hidden'>
+      <div className='ml-[260px] px-6 h-[100vh] overflow-hidden lg:ml-0 lg:px-2'>
         <Header />
         <Outlet/>
       </div>

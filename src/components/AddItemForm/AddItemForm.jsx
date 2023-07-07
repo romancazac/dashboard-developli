@@ -4,24 +4,25 @@ import { BriefcaseIcon, BuildingOffice2Icon, CalendarDaysIcon, MapPinIcon } from
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPostItem,  fetchUpdateItem } from '../../redux/slices/profileSlice';
+import { fetchPostItem, fetchUpdateItem } from '../../redux/slices/profileSlice';
 import { fetchProfileInfo } from '../../redux/slices/authSlice';
 import uuid from 'react-uuid';
+import { Spinner } from '@material-tailwind/react';
 
 
 
 
 export const AddItemForm = ({ name }) => {
-   const disptach = useDispatch();
+   const dispatch = useDispatch();
    const [perioad, setPerioad] = useState({ from: '', to: '' });
    const { popUp } = useSelector(state => state.jobs)
-   const { forUpdateData } = useSelector(state => state.profile)
+   const { forUpdateData, status } = useSelector(state => state.profile)
    const [rerender, setRerender] = useState(false);
 
 
- 
 
 
+  
    const CreateSchema = Yup.object().shape({
       position: Yup.string()
          .min(2, 'Too Short!')
@@ -31,23 +32,23 @@ export const AddItemForm = ({ name }) => {
          .required('Required'),
 
    });
-  
+
    const onAddItems = async (values, actions) => {
 
       if (forUpdateData[1].redact) {
          const id = forUpdateData[0]
          const updates = { ...values, perioad: perioad.to + '--' + perioad.from, id }
 
-         await disptach(fetchUpdateItem({ updates, id  }))
-         disptach(fetchProfileInfo())
+         await dispatch(fetchUpdateItem({ updates, id }))
+         dispatch(fetchProfileInfo())
 
          // actions.resetForm()
 
       } else {
          const updates = { ...values, perioad: perioad.to + '--' + perioad.from, id: uuid() }
-         await disptach(fetchPostItem({ updates, section: popUp, id:forUpdateData[0]}))
-         disptach(fetchProfileInfo())
-   
+         await dispatch(fetchPostItem({ updates, section: popUp, id: forUpdateData[0] }))
+         dispatch(fetchProfileInfo())
+
          actions.resetForm()
       }
 
@@ -55,10 +56,10 @@ export const AddItemForm = ({ name }) => {
    }
    useEffect(() => {
       if (forUpdateData[1]?.redact) {
-        setRerender(!rerender); // Modifică valoarea stării pentru a declanșa rerenderul
+         setRerender(!rerender); // Modifică valoarea stării pentru a declanșa rerenderul
       }
-    }, [forUpdateData]); 
-  
+   }, [forUpdateData]);
+
    return (
 
       <Formik
@@ -119,9 +120,9 @@ export const AddItemForm = ({ name }) => {
                      icon={<MapPinIcon className='w-6 text-green' />} />
 
                </div>
-               <div className="flex gap-6">
-                  <div className="flex-1 mb-7">
-                     <span className='text-blackColor font-bold inline-block mb-3'>Start Date</span>
+               <div className="flex flex-wrap gap-6">
+                  <div className="flex-1 mb-7 sm:mb-0">
+                     <span className='text-blackColor font-bold inline-block mb-3 '>Start Date</span>
                      <InputIcon
                         type='date'
                         placeholder={name}
@@ -149,8 +150,12 @@ export const AddItemForm = ({ name }) => {
 
                <div className="flex justify-end gap-4 mt-3">
                   <button onClick={() => console.log('')} className="btn-block btn-block_gray">Discard</button>
-                  <button type='submit' className="btn-block btn-block_green">Save Changes</button>
+                  <button type='submit' className="flex gap-2 btn-block btn-block_green">
+                     Save Changes
+                     {status === "loading" ?<Spinner className='w-4 h-4 text-white' /> : ''}              
+                  </button>
                </div>
+
             </Form>
          )}
       </Formik>

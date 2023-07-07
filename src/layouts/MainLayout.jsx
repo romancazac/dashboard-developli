@@ -8,7 +8,7 @@ export const MainLayout = () => {
   return (
     <>
       <Aside />
-      <div className='ml-[260px] lg:ml-0 px-6 lg:px-2'>
+      <div className='page__layout'>
         <Header />
         <div className="flex gap-10">
           <div className="flex-auto">
